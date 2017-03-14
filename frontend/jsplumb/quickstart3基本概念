@@ -1,0 +1,55 @@
+https://segmentfault.com/a/1190000003826481
+
+jsPlumb（3）-基本概念
+
+介绍
+jsPlumb是用来连接元素的，所以核心是Connection，其中又分为以下四个概念：
+
+Anchor 一个和某个相关元素的位置。你不能创建它们，非可视化，只有逻辑上的position。更多信息，访问 this page
+Endpoint Connection的可视的一个端点，你可以创建和连接它们，当然，首先你得使它们能拖放。或者通过程序上jsPlumb.connect(...)来创建和连接。更多信息，请访问 the page
+Connector 可视化的，连接两个元素的线。有四种类型：贝塞尔曲线、直线、流程图、状态机。你不能和它们交互，你可以修改它们的定义。更多信息， this page
+Overlay 一个UI控件，用来装饰Connector，如Label、Arrow等。
+一个Connection由两个Endpoint、一个Connector，Overlay可有可无。每个Endpoint有一个关联的Anchor。
+
+jsPlumb的公共API只有Connection和Endpoint，创建和配置。但是你需要熟悉其内部的Anchor, Connector and Overlay的概念。
+
+Connector, Endpoint, Anchor & Overlay的定义
+当你定义一个Connector, Endpoint, Anchor 或 Overlay的时候，你就需要定义，如：
+
+jsPlumb.connect({
+    source:"someDiv",
+    target:"someOtherDiv",
+    endpoint:"Rectangle"
+});
+jsPlumb.connect({
+    source:"someDiv",
+    target:"someOtherDiv",
+    endpoint:[ "Rectangle", { 
+      cssClass:"myEndpoint", 
+      width:30, 
+      height:10 
+  }]
+});
+var common = {
+    cssClass    :   "myCssClass",
+    hoverClass  :   "myHoverClass"
+};
+jsPlumb.connect({
+    source:"someDiv",
+    target:"someOtherDiv",
+    endpoint:[ "Rectangle", { width:30, height:10 }, common ]
+});
+var common = {
+    cssClass:"myCssClass"
+};
+jsPlumb.connect({
+  source:"someDiv",
+  target:"someOtherDiv",
+  anchor:[ "Continuous", { faces:["top","bottom"] }],
+  endpoint:[ "Dot", { radius:5, hoverClass:"myEndpointHover" }, common ],
+  connector:[ "Bezier", { curviness:100 }, common ],
+  overlays: [
+        [ "Arrow", { foldback:0.2 }, common ],
+        [ "Label", { cssClass:"labelClass" } ]  
+    ]
+});
