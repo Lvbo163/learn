@@ -1,0 +1,65 @@
+https://segmentfault.com/a/1190000003826485
+
+jsPlumb（4）-元素拖放
+
+使用jsPlumb的一个普通的特性就是元素的拖放。方法如下：
+myInstanceOfJsPlumb.draggable("elementId");
+
+接受的参数类型
+
+元素id的字符串
+元素
+list类型对象，内容是元素或字符串举个栗子
+数组
+jsPlumbInstance.draggable(["elementOne", "elementTwo"]);
+jQuery选择器
+jsPlumbInstance.draggable($(".someClass"));
+节点列表
+var els = document.querySelectorAll(".someClass");
+jsPlumbInstance.draggable(els);
+可选项
+
+如果你真的不能使用 jsPlumb.draggable，那你就不得不通过jsPlumb.repaint手动处理。jsPlumb是jsPlumbInstance类的一个实例。如果你使用自己的实例，确保你调用的是这些实例的拖放方法，而不是全局的。
+
+如果你是用的是vanilla jsPlumb，它提供一个打包好的库叫Katavorio——提供多种拖放方式。
+
+需要的CSS
+
+你必须把你要设置可拖放的元素设置为position:absolute。
+
+not finished
+拖拽容器
+
+使容器内的内容也可以拖拽。
+
+jQuery：
+jsPlumb.draggable($("someSelector"), {
+  containment:"parent"
+});
+Vanilla
+jsPlumb.draggable("someElement", {
+   containment:true
+});
+not finished
+拖拽内嵌元素
+
+not finished
+拖拽多个元素
+
+not finished
+拖拽时文本选中
+
+浏览器默认的拖拽行为是选择DOM里的元素。jQuery废止了这种行为，vanilla jsPlumb没有。为了支持这种情况，被拖拽元素都增加了_jsPlumb_drag_select这个类。
+
+在拖拽结束后被去除。
+
+内容如下：
+
+._jsPlumb_drag_select * {
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;    
+}    
