@@ -1,0 +1,95 @@
+https://segmentfault.com/a/1190000003826476
+
+jsPlumb（2）-配置
+
+
+感受jsPlumb最容易最直观是重写jsPlumb的默认配置。如果你没这么做，你不得不每次调用都得重写这些值。connect和addEndpoint的每个参数都和jsPlumb的默认值有关。
+
+默认设置存储在jsPlumb.Defaults，是个javascript对象。有效健，初始值如下：
+
+Anchor : "BottomCenter",
+Anchors : [ null, null ],
+ConnectionsDetachable   : true,
+ConnectionOverlays  : [],
+Connector : "Bezier",
+Container : null,
+DoNotThrowErrors  : false,
+DragOptions : { },
+DropOptions : { },
+Endpoint : "Dot",
+Endpoints : [ null, null ],
+EndpointOverlays : [ ],
+EndpointStyle : { fillStyle : "#456" },
+EndpointStyles : [ null, null ],
+EndpointHoverStyle : null,
+EndpointHoverStyles : [ null, null ],
+HoverPaintStyle : null,
+LabelStyle : { color : "black" },
+LogEnabled : false,
+Overlays : [ ],
+MaxConnections : 1,
+PaintStyle : { lineWidth : 8, strokeStyle : "#456" },
+ReattachConnections : false,
+RenderMode : "svg",
+Scope : "jsPlumb_DefaultScope"
+注意：EndpointHoverStyle 的fillStyle是null
+。也就是说jsPlumb使用来自Connector的hover style的strokeStyle来填充Endpoint。
+
+EndpointStyle和EndpointStyles你都可以定制，你可以让每个连接的Endpoint都不一样。Endpoint和Endpoints也一样。jsPlumb会先检查用户的Endpoint和EndpointStyle数组，然后再检查默认的。
+
+你可以通过importDefaults方法覆盖默认值：
+
+jsPlumb.importDefaults({
+  PaintStyle : {
+    lineWidth:13,
+    strokeStyle: 'rgba(200,0,0,0.5)'
+  },
+  DragOptions : { cursor: "crosshair" },
+  Endpoints : [ [ "Dot", { radius:7 } ], [ "Dot", { radius:11 } ] ],
+  EndpointStyles : [{ fillStyle:"#225588" }, { fillStyle:"#558822" }]
+});
+加载并执行这段代码后，就会得到效果。
+
+每条默认设置的解释
+
+Anchor 对于那些没有声明Anchor的Endpoint，对Connection的source和target也适用。
+Anchors 所有Connection的source和target的Anchors
+Connector 给默认Connector使用
+ConnectionsDetachable Connections是否可通过鼠标分离
+Container
+DoNotThrowErrors 当Anchor, Endpoint or Connector被请求却不存在时是否报错
+ConnectionOverlays 默认Connection的遮罩
+DragOptions 可通过jsPlumb.draggable配置
+DropOptions 配置Endpoint是否可以drop连接
+Endpoint Endpoint的定义
+Endpoints jsPlumb.connect的source 和 target
+EndpointOverlays 默认所有的Overlays
+EndpointStyle
+EndpointStyles
+EndpointHoverStyle
+EndpointHoverStyles
+HoverPaintStyle
+LabelStyle
+LogEnabled
+Overlays
+MaxConnections
+PaintStyle
+ReattachConnections
+RenderMode
+Scope
+jsPlumb.getInstance
+
+通过 jsPlumb.getInstance
+
+jsPlumb.getInstance({
+  PaintStyle : {
+    lineWidth:13,
+    strokeStyle: 'rgba(200,0,0,100)'
+  },
+  DragOptions : { cursor: "crosshair" },
+  Endpoints : [ [ "Dot", { radius:7 } ], [ "Dot", { radius:11 } ] ],
+  EndpointStyles : [
+    { fillStyle:"#225588" }, 
+    { fillStyle:"#558822" }
+  ]
+});
