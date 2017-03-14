@@ -1,0 +1,185 @@
+https://segmentfault.com/a/1190000003826470
+
+jsPlumb（1） - 开始使用
+
+jsPlumb
+
+jsPlumb社区版本为开发者在他们的网页上提供可视化的元素连接。在现代的浏览器使用SVG，在IE8和以下版本使用VML。
+
+jsPlumb没有额外的依赖。
+
+加载和配置
+几种jsPlumb实例化的方式
+
+jsPlumb默认是注册在浏览器的窗口（window）的，为整个页面提供静态实例。你也可以单独实例化，使用getInstance 模块，例如
+
+var firstInstance = jsPlumb.getInstance();
+
+变量firstInstance现在和jsPlumb变量一样使用，你可以使用importDefault设置默认参数，调用connect函数：
+
+firstInstance.importDefaults({
+ Connector : [ "Bezier", { curviness: 150 } ],
+ Anchors : [ "TopCenter", "BottomCenter" ]
+});
+
+firstInstance.connect({
+  source:"element1", 
+  target:"element2", 
+  scope:"someScope" 
+});
+getInstance也可以带参数
+
+ var secondInstance = jsPlumb.getInstance({
+   PaintStyle:{ 
+     lineWidth:6, 
+     strokeStyle:"#567567", 
+     outlineColor:"black", 
+     outlineWidth:1 
+  },
+  Connector:[ "Bezier", { curviness: 30 } ],
+  Endpoint:[ "Dot", { radius:5 } ],
+  EndpointStyle : { fillStyle: "#567567"  },
+  Anchor : [ 0.5, 0.5, 1, 1 ]
+});
+
+secondInstance.connect({ 
+  source:"element4", 
+  target:"element3", 
+  scope:"someScope"   
+});
+建议自己进行实例化。
+
+元素ID
+jsPlumb通过id和元素交互，如果id没有设置，jsPlumb会自动设置一个。建议用户自己设置。
+
+管理元素id
+
+因为jsp通过id管理元素，所以你得通知jsPlumb元素id的变化，
+
+*jsPlumb.setId(el, newId)设置jsPlumb中的元素id
+*jsPlumb.setIdChanged(oldId, newId)改变已有jsPlumb中的元素id
+
+方法参数
+jsPlumb中大多数方法提供多种对指定元素进行操作的格式。
+
+选择器/节点列表
+
+jQuery中又选择器的概念，例如$('.myClass')。在jsPlumb中同样适用。
+
+jsPlumb也提供NodeList，有几种方式从DOM获取到NodeList，最好用的方法是document.querySelectorAll("some selector")
+
+元素ids
+
+元素s
+
+数组s
+
+关于Z轴
+使用jsPlumb时，你需要考虑UI部分的z-indices（Z指数），特别是不要让jsPlumb添加到DOM上的元素不要遮盖其他元素的交互。
+
+jsPlumb为Endpoint, Connector and Overlay添加一个元素到DOM上。到目前为止，一个Connection在每个终点都有Endpoint，在中间有一个标签（label），jsPlumb添加四个元素，实际添加的元素取决于渲染器使用的是（SVG还是VML）。
+
+为了让你能正确地组织z参数，jsPlumb给每个元素添加了CSS类，如下
+
+Component Class
+Endpoint _jsPlumb_endpoint
+Connector _jsPlumb_connector
+Overlay _jsPlumb_overlay
+
+另外，无论什么时候，当鼠标经过Endpoint或Connection上时，都会触发_jsPlumb_hover这个类。关于jsPlumb CSS更多类的信息，访问 this page
+
+jsPlumb在哪儿添加元素？
+知道jsPlumb把新加的元素放在DOM的哪里很重要。如果你想要个简介的版本（TL;DR（too long, didn’t read）），归纳如下：
+
+强烈建议在使用jsPlumb前设置一个容器（Container）
+容器就是你用来和jsPlumb添加的元素交互的一个母元素。
+如果你没有指定一个容器，jsPlumb会推断你调用addEndpoint、makeSource、makeTarget的方法的第一个元素的offsetParent，或者connect的source元素的offsetParent作为容器。
+下面是详情：
+
+早期版本的jsPlumb把body作为容器，好处是在支持那些可以连接（connect）的元素上很灵活，但是在一些具体案例中结果不是预期的。
+
+设想一下，在标签里有几个连接在一起的元素，你想在表单里添加元素，让用户切换表单时当前的可以隐藏，那样所有的jsPlumb相关元素都会被隐藏掉。但是当元素都是在body上时，这就不会发生。
+
+还有就是在一些元素里包含一个图表，在溢出时会显示滑动条，把元素添加到body可以避免这种事自动发生。
+
+容器
+
+你可以通过setContainer指定作为jsPlumb添加元素的容器，或者在jsPlumb.getInstance参数中指定。
+
+重要：如果你使用了jsPlumb的draggable方法使你的UI可以拖拽（不止是通过jsPlumb添加的），会发生意外。建议使用另一个实例操作，如：
+
+var nonPlumbing = jsPlumb.getInstance();
+nonPlumbing.draggable("some element");
+举个栗子
+
+设置容器，使用jQuery选择机制，添加一个Endpoint，相关UI将作为document body的子元素：
+    jsPlumb.setContainer($("body"));
+    jsPlumb.addEndpoint(someDiv, { endpoint options });
+通过DOM
+     
+             jsPlumb.setContainer(document.getElementById("foo"));
+    jsPlumb.addEndpoint(someDiv, { endpoint options });
+通过元素id
+    jsPlumb.setContainer("containerId");
+    jsPlumb.connect({ source:someDiv, target:someOtherDiv });`
+通过实例化
+    var j = jsPlumb.getInstance({              
+      Container:"foo"
+    });
+    jsPlumb.addEndpoint(someDiv, { endpoint options });
+容器的CSS
+
+你所选择的容器会有osition:relative,因为jsPlumb通过容器计算新元素添加的位置。
+
+拖拽
+使用jsPlumb交互，拖拽很常见，可以通过下面来实现：
+
+myInstanceOfJsPlumb.draggable("elementId");
+
+如果你不这么做的话，jsPlumb就不知道元素被拖拽了，就不能重新渲染页面。
+
+更多信息，请访问 this page
+
+执行效率
+jsPlumb执行速度和处理连接的上限取决于你所运行的浏览器。目前，速度依次是Chrome,Safari,Firefox,IE版本越低执行越慢。
+
+悬浮拖拉（suspending drawing）
+
+每次调用connect，addEndpoint时都会重新渲染关联节点，大多数情况下这就是你想要的。如果你进行大量操作，建议这样干：
+
+jsPlumb.setSuspendDrawing(true);
+...
+load up all your data here - 
+...
+jsPlumb.setSuspendDrawing(false, true);
+setSuspendDrawing通知jsPlumb要进行大量重绘操作，就是repaintEverything。
+
+批处理
+
+这个函数进入悬停绘画（suspending drawing）模式，然后再进入普通绘画模式。
+
+jsPlumb.batch(fn, [doNotRepaintAfterwards]);
+
+举个栗子
+
+jsPlumb.batch(function() {
+  // import here
+  for (var i = 0, j = connections.length; i < j; i++) {
+      jsPlumb.connect(connections[i]);
+  }
+});
+这里我们把connections当作一个对象数组，以作为connect函数的参数，例如：
+{ source:"someElement", target:"someOtherElement" }
+
+默认，会在函数末尾执行重绘的，但是你可以不这么做，
+
+jsPlumb.batch(function() {
+  // import here
+}, true);
+这个方法以前叫doWhileSuspended，1.7.3版本改了名字。
+
+锚点类型
+
+Continuous 需要最大的计算量
+Dynamic and Perimeter是次慢的，Dynamic默认有60个位置可供选择
+Static和Top`Bottom`一样，是最快的。
