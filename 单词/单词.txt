@@ -1,17 +1,766 @@
-gut	Ӣ[g?t]
-��[��?t]
-n.	��; ����; ֱ��; ����;
-adj.	���ܵģ�ֱ����;
-vt.	�ٻ���������ȣ����ڲ�; ȡ����������;
-[����]By the time they finish, the crewmen are standing ankle-deep in fish guts.
-�������깤ʱ����Ավ�ĵط��������Ѷ������ס�
-[����]	�����˳Ƶ�����guts ������guts ���ڷִʣ�gutting ��ȥʽ��gutted ��ȥ�ִʣ�gutted
+
+adhere	英[ədˈhɪə(r)]
+美[ədˈhɪr]
+vi.	坚持; 附着; 黏附; 追随;
+vt.	使粘附; 遵循，坚持; 追随，依附;
+[例句]All members of the association adhere to a strict code of practice
+协会的所有成员都遵守一套严格的行为规范。
+This project does not adhere to [Semantic Versioning].
+[其他]	第三人称单数：adheres 现在分词：adhering 过去式：adhered 过去分词：adhered
+
+
+gut	英[g?t]
+美[ɡ?t]
+n.	肠; 内脏; 直觉; 勇气;
+adj.	本能的，直觉的;
+vt.	毁坏（建筑物等）的内部; 取出…的内脏;
+[例句]By the time they finish, the crewmen are standing ankle-deep in fish guts.
+到他们完工时，船员站的地方鱼内脏已堆至脚踝。
+[其他]	第三人称单数：guts 复数：guts 现在分词：gutting 过去式：gutted 过去分词：gutted
 My gut feeling would go toward adopting the latest release
 
 
-drastic	Ӣ[?dr?st?k]
-��[?dr?st?k]
-adj.	���ҵ�; ���˵�; ���ҵ�; �����ɵȣ� ������;
-[����]Drastic measures are needed to clean up the profession
-��ҵ����������Ҫ�����Ĵ�ʩ��
+drastic	英[?dr?st?k]
+美[?dr?st?k]
+adj.	激烈的; 极端的; 猛烈的; （法律等） 严厉的;
+[例句]Drastic measures are needed to clean up the profession
+行业清理整顿需要严厉的措施。
 go under drastic changes
+
+
+fundamental	英[ˌfʌndəˈmentl]
+美[ˌfʌndəˈmɛntl]
+adj.	基础的，基本的，根本的，重要的，原始的，主要的，十分重大的; [物] 基频的，基谐波的; [乐] 基音的;
+n.	原理，原则，基本，根本，基础; [乐] 基音; [物] 基频，基谐波;
+[例句]But on this question, the two leaders have very fundamental differences
+但在这个问题上，两位领导人有着根本性的分歧。
+[其他]	比较级：more fundamental 最高级：most fundamental 复数：fundamentals
+
+
+likewise	英[ˈlaɪkwaɪz]
+美[ˈlaɪkˌwaɪz]
+adv.	同样地; 也，而且;
+[例句]These requests are ignored. His requests for rent are likewise sometimes ignored
+这些要求被置之不理。他关于支付租金的要求有时也同样未被理睬。
+
+back and forth 来回地 
+how to pass topology state back and forth to an external enginehow to pass topology state back and forth to an external engine
+
+
+in one sense 某种意义上
+
+transitions	英[træn'zɪʃnz]
+美[træn'zɪʃnz]
+n.	过渡，转变，变迁( transition的名词复数 );
+[例句]The rate constants and activation parameters of these transitions have been measured and discussed.
+测得并讨论了这一构象变化的速度常数和活化参数；
+
+
+relevant/relative/related 
+relevant:有关的、切题的，往往表示与手头的事情或目前的状况有直接关系，尤指在逻辑上有关系的，可后接介词to引出相关的主题(relevant to... 与……有关的)，也可以放在名词前直接修饰名词(relevant details/information 有关细节/信息) 
+relative:相对的、比较的、较……而言的，此时放在名词前直接修饰名词(relative comfort比较舒适)，也表示相关的、有关系的、表关系的，表示此意时通常不放在名词前直接修饰名词，而后接介词to引出相关事物，还可以作名词，指亲戚、亲属 
+related:在相互关系的、(与……)有关系的，可后接介词to引出相关事物，也可以放在名词前直接修饰名词(chemistry,biology and other related sciences 化学、生物学及其他相关的科学)，还指有亲缘关系的、共同起源或婚姻而相互关联的(be related to sb. by marriage 与某人是姻亲)
+
+relevant	英[ˈreləvənt]
+美[ˈrɛləvənt]
+adj.	有关的，中肯的; 相关联的; 确切的; 有重大意义[作用]的，实质性的;
+[例句]We are trying to make politics more relevant to younger people.
+我们试图使政治活动更加贴近年轻人。
+
+
+mediate	英[ˈmi:dieɪt]
+美[ˈmidiˌet]
+vt.	经调解解决; 斡旋促成;
+vi.	调停，调解，斡旋;
+adj.	居间的，间接的;
+[例句]My mom was the one who mediated between Zelda and her mom
+我妈妈充当了泽尔达和她妈妈之间的调解人。
+[其他]	第三人称单数：mediates 现在分词：mediating 过去式：mediated 过去分词：mediated
+
+
+intermediate
+英[ˌɪntəˈmi:diət]
+美[ˌɪntərˈmi:diət]
+adj.	中间的，中级的;
+n.	中间物，中间分子，中间人;
+vi.	调解：充当调解人，调解; 干涉;
+[例句]You should consider breaking the journey with intermediate stopovers at airport hotels.
+你应该考虑将旅程分为几段，中途在机场旅馆稍作停留。
+
+evolve	英[iˈvɒlv]
+美[iˈvɑ:lv]
+vt.	使发展; 使进化; 设计，制订出; 发出，散发;
+vi.	发展; [生] 通过进化进程发展或发生;
+[例句]The bright plumage of many male birds has evolved to attract females
+很多雄鸟进化出鲜艳的羽毛是为了吸引雌鸟。
+The workflow topic has broad impact as tooling and deployment platforms evolve
+
+
+underlying
+英[ˌʌndəˈlaɪɪŋ]
+美[ˌʌndərˈlaɪɪŋ]
+adj.	潜在的，含蓄的; 基础的; 表面下的，下层的; [法] 优先的;
+v.	优先于(underlie的ing形式); 构成…的基础（或起因），引起;
+[例句]To stop a problem you have to understand its underlying causes
+要想杜绝问题的发生，必须弄清它的深层原因。
+[其他]	原型： underlie
+
+
+
+semantics	英[sɪˈmæntɪks]
+美[sɪˈmæntɪks]
+n.	语义学; 词义学;
+[例句]Semasiology is a variant name for semantics.
+Semasiology是Semantics的异名。
+
+
+normative	英[ˈnɔ:mətɪv]
+美[ˈnɔ:rmətɪv]
+adj.	标准的，规范的;
+[例句]Methods employed include logical analysis and normative analysis.
+研究方法：逻辑分析和规范分析。
+
+workarounds_百度翻译
+workarounds	
+网络	工作区; 一种环境; 权变措施; 种环境;
+
+consistently
+英[kən'sɪstəntlɪ]
+美[kənˈsɪstəntlɪ]
+adv.	一贯地，坚持地，固守地; 总;
+[例句]This is a policy we have pursued consistently.
+这是我们一贯奉行政策。
+
+interpreted	
+v.	理解; 解释( interpret的过去式和过去分词 ); 把…理解为; 演绎（按自己的感觉演奏音乐或表现角色）;
+[例句]This might be interpreted as a de facto recognition of the republic's independence.
+可以认为这实际上承认了该共和国的独立。
+
+
+subtle	英[ˈsʌtl]
+美[ˈsʌtl]
+adj.	微妙的; 巧妙的; 敏感的; 狡猾的;
+[例句]Intolerance can take subtler forms too.
+过敏反应也可能会表现得很不明显。
+[其他]	比较级：subtler 最高级：subtlest
+
+transparently
+英[træns'pærəntlɪ]
+美[træns'pærəntlɪ]
+adv.	明亮地，显然地，易觉察地;
+[例句]You now have an Axis client that requests and handles GZIP encoding transparently to the underlying code.
+您现在有了一个以对底层代码透明的方式请求和处理GZIP编码的Axis客户机了。
+
+
+hypervisor	英['haɪpəvaɪzə]
+美['haɪpəvaɪzə]
+n.	（系统） 管理程序;
+[例句]This article demonstrates an advantage of using Linux as a hypervisor.
+本文展示了将Linux作为一个系统管理程序使用的优势。
+
+
+impact	英[ˈɪmpækt]
+美[ˈɪmˌpækt]
+n.	影响; 碰撞，冲击，撞击; 冲击力;
+vt.	撞击; 挤入，压紧; 对…产生影响;
+vi.	产生影响; 冲撞，冲击;
+[例句]They say they expect the meeting to have a marked impact on the future of the country
+他们称他们预期会议对国家的未来会产生显著影响。
+[其他]	第三人称单数：impacts 复数：impacts 现在分词：impacting 过去式：impacted 过去分词：impacted
+
+
+granularity
+英[grænjʊ'lærɪtɪ]
+美[grænjʊ'lærɪtɪ]
+n.	间隔尺寸，粒度;
+[例句]Therefore we implemented a data cache in the integration layer that supported a per-user granularity.
+因此，我们在集成层中实现了一个支持每用户粒度的数据缓存。
+
+
+traversal	英[træ'vɜ:sl]
+美['trævɜ:səl]
+n.	横越，横断物，（横向）往返移动;  遍历
+[例句]JSR-170 provides two methods for accessing nodes: traversal access and direct access.
+JSR-170提供了两种存取内容的方法：遍历存取和直接存取。
+
+
+notation	英[nəʊˈteɪʃn]
+美[noʊˈteɪʃn]
+n.	记号，标记法;
+[例句]Musical notation was conceived for the C major scale and each line and space represents a note in this scale.
+五线谱以C大音阶构成，每一个线和间代表这个音阶的音符。
+BPMN(Business Process Modeling Notation)
+业务流程图（Business Process Diagram）
+
+proprietary	英[prəˈpraɪətri]
+美[prəˈpraɪəteri]
+adj.	专有的，专利的; 所有（人）的; （商品） 专卖的;
+n.	所有权，所有物; 所有人; 专卖药品; 独家制造（及销售）的产品;
+[例句]We had to take action to protect the proprietary technology.
+我们必须采取措施保护专利技术。
+
+
+
+comply	英[kəmˈplaɪ]
+美[kəmˈplaɪ]
+vi.	遵从; 依从，顺从; 应允，同意;
+[例句]The commander said that the army would comply with the ceasefire
+指挥官说军队会遵守停火协议。
+
+
+
+
+allocated	英['æləkeɪtɪd]
+美['æləkeɪtɪd]
+v.	分配，分派( allocate的过去式和过去分词 ); 把…拨给;
+[例句]Equipment is allocated by warrant.
+设备已经按照令状分配好了。
+
+mandatory	英[ˈmændətəri]
+美[ˈmændətɔ:ri]
+adj.	强制的; 命令的; 受委托的;
+n.	受托者;
+[例句]Attendance is mandatory.
+务必参加。
+[其他]	复数：mandatories
+
+
+align	英[əˈlaɪn]
+美[əˈlaɪn]
+vt.	使成一线，使结盟; 排整齐;
+vi.	排列; 成一条线;
+[例句]There are signs that the prime minister is aligning himself with the liberals
+有迹象表明首相正在与自由党人结盟。
+align with 对准
+Release planning review is to ensure the plan is complete, sufficient, and aligned with release milestone
+
+review	英[rɪˈvju:]
+美[rɪˈvju]
+n.	回顾; 复习; （报刊的） 评论; [法] 复审;
+vt.	评论; 复习; 复查; 检验;
+vi.	复习功课; 写评论;
+[例句]The president ordered a review of US economic aid to Jordan
+总统下令对美国向约旦提供的经济援助进行审查。
+
+nascent	英[ˈnæsnt]
+美[ˈnæsənt, ˈnesənt]
+adj.	初生的; 初期的; 开始形成的; 发生中的;
+[例句]But China is a nascent superpower.
+而中国则是一个新兴超级大国。
+
+incubation
+英[ˌɪŋkjuˈbeɪʃn]
+美[ˌɪnkjəˈbeʃən, ˌɪŋ-]
+n.	孵化; 孵卵; <医，生>（传染病的）潜伏期; <生>（细菌等的）繁殖;
+[例句]Both incubation temperature and substrate humidity affected hatching success and shell crack rate significantly.
+孵化温度和湿度显著影响孵化成功率和卵壳龟裂率；
+
+proposal	英[prəˈpəʊzl]
+美[prəˈpoʊzl]
+n.	建议; 提议; 求婚; 〈美〉投标;
+[例句]The President is to put forward new proposals for resolving the country's constitutional crisis
+总统将提出解决国家宪法危机的新议案。
+
+
+propose	英[prəˈpəʊz]
+美[prəˈpoʊz]
+vt.	求婚; 提议，建议; 打算，计划; 推荐，提名;
+vi.	求婚; 做出计划，打算;
+[例句]Britain is about to propose changes to some institutions
+英国将提议对一些机构进行改革。
+
+
+deliver	英[dɪˈlɪvə(r)]
+美[dɪˈlɪvɚ]
+vt.	交付; 发表; 递送; 使分娩;
+vi.	传送; 投递;
+[例句]The Canadians plan to deliver more food to southern Somalia
+加拿大计划向索马里南部地区运送更多的食品。
+
+deliverables	英[dɪ'lɪvərəblz]
+美[dɪ'lɪvərəblz]
+n.	可交付成果; 可交付物，可交付性; 产出(deliverable的复数形式);
+[例句]The deliverables are a conceptual model and an analytical requirements model.
+此阶段的可交付结果是一个概念模型和一个分析需求模型。
+initiated  to deliver a set of project deliverables
+
+
+articulated
+英[ɑ:ˈtɪkjuleɪtɪd]
+美[ɑ:rˈtɪkjuleɪtɪd]
+n.	铰接（的），枢接（的），有关节（的）;
+v.	清楚地表达( articulate的过去式和过去分词 ); 形成关节; 与…合成整体;
+[例句]He articulated each syllable carefully.
+他小心而清晰地发出每个音节。
+
+
+endeavor
+英[ɪn'devə]
+美[ɪn'devə]
+vt.
+尝试，试图; 尽力，竭力;
+n.
+努力，尽力;
+[例句]We made an earnest endeavor to persuade her.
+我们郑重其事地努力说服她。
+
+
+
+resolve和solve的区别  
+Generally, when it comes to problems, people use "solve" when it's a problem that doesn't involve a disagreement with another person. For example, if I was locked out of my house because I didn't have my keys, I would work to find a way to solve the problem by finding a way to get into my house. 
+
+Usually the word "resolve" is used with problems that involve other people and disagreements. If there is a misunderstanding or a difference of opinion as far as how something should be done or whether or not something should be done, people work together to "resolve" the issue. 
+
+
+interval - 必应词典
+美['ɪntərvəl]英['ɪntə(r)v(ə)l]
+n.间歇；音程；（戏剧、电影或音乐会的）幕间休息
+网络间隔；区间；时间间隔
+变形复数：intervals；
+搭配short interval；decent interval；periodic interval；
+例句Event count must be at least two when a time interval is specified.
+当指定时间间隔时，事件计数至少是两个。
+
+
+utilize - 必应词典
+美['jut(ə)l.aɪz]英['juːtɪlaɪz]
+v.利用；运用；使用；应用
+网络利用或使用；动词利用等等；利于发挥效用
+
+
+convention - 必应词典
+美[kən'venʃ(ə)n]英[kən'venʃ(ə)n]
+n.惯例；会议；协定；〈美〉(政党等的)全国代表大会
+网络常规；约定；公约
+
+
+
+dramatically - 必应词典
+美[drə'mætɪkli]
+adv.戏剧地；显著地
+网络引人注目地；戏剧性地；急剧地
+搭配dramatically reduce；dramatically improve；dramatically change；
+例句But because China moved out of that negative spin very quickly, our business picked up dramatically.
+但由于中国很快地走出了下行螺旋，我们的业务急剧反弹。
+jBPM has been dramatically beefed up
+
+beef up - 必应词典
+v.加强
+网络补充；增强；加强力量
+例句The government decided to beef up its air force by buying a number of new fighters.
+该政府决定购买一批新战机，以增强其空军实力
+
+beefed up - 必应词典
+un.加强的
+网络改装车；增加力量
+例句He said the organization has beefed up its security, in conformance with federal standards.
+他说，公司已经按照联邦标准加强了安保。
+
+infrastructure - 必应词典
+美['ɪnfrə.strʌktʃər]英['ɪnfrə.strʌktʃə(r)]
+n.（国家或机构的）基础设施
+网络基础建设；基础结构；基础架构
+变形复数：infrastructures；
+
+uber - 必应词典
+美[ˈuːbər]英[ˈuːb(r)]
+adj.超级；极其
+网络乳房；尤伯杯；超级好的
+
+spun off - 必应词典
+na.母公司收回子公司全部股本使之脱离的做法；有用的副产品
+网络甩掉；发丝的副加特别节目
+例句He added that animation and children's programming as well as home shopping would also be spun off.
+他补充说，动画和少儿节目以及家庭购物等业务也将剥离。
+The base workbench has been spun off into a standalone project called UberFire.
+
+
+inspire - 必应词典
+美[ɪn'spaɪr]英[ɪn'spaɪə(r)]
+v.激励；鼓舞；赋予灵感；引起联想
+网络激发；启发；给…以灵感
+变形过去分词：inspired；现在分词：inspiring；第三人称单数：inspires；
+搭配inspire love；
+
+workbench - 必应词典
+美['wɜrk.bentʃ]英['wɜː(r)k.bentʃ]
+n.工作台
+网络工作平台；工作桌；手工台
+变形复数：workbenches；
+
+sane - 必应词典
+美[seɪn]英[seɪn]
+adj.精神健全的；神志正常的；明智的；理智的
+网络Scanner Access Now Easy；心智健全的；神志清醒的
+变形比较级：saner；最高级：sanest；
+搭配sane person；
+例句All this will be conducive to a more sane and less destructive financial world.
+这一切将有助于构建一个更理性、破坏性更小的金融世界。
+
+convention
+美[kən'venʃ(ə)n]英[kən'venʃ(ə)n]
+n.习俗；惯例；协定；常规
+网络大会；会议；公约
+
+
+streamline
+美['strim.laɪn]英['striːm.laɪn]
+v.把…做成流线型；调整(机构等)使现代化或提高效率
+adj.流线型的
+n.【物】流线
+网络流线化；精简；流线型化
+变形第三人称单数：streamlines；现在分词：streamlining；过去分词：streamlined；
+
+
+methodology
+英[ˌmeθəˈdɒlədʒi]
+美[ˌmeθəˈdɑ:lədʒi]
+n.	方法论; 方法学; （从事某一活动的） 一套方法;
+[网络]	研究方法; 方法; 方法論;
+[例句]Teaching methodologies vary according to the topic.
+题目不同，教学法也不一样。
+
+
+complaint 
+英[kəmˈpleɪnt]美[kəmˈplent]
+n.抱怨，控诉; 委屈，怨言; 平平的来由; 痛苦根源;
+[网络]
+怨言; 不满; 诉讼;
+[例句]There's been a record number of complaints about the standard of service on Britain's railways.
+有关英国铁路服务水平的投诉空前的多。
+
+
+
+prevalent
+英[ˈprevələnt]美[ˈprɛvələnt]
+adj.
+流行的，盛行的; 普遍存在的，普遍发生的
+1
+Eye diseases are very prevalent in some tropical countries.
+在很多热带的国家，红眼病是非常流行的。
+www.enread.com
+2
+Voice-controlled, self-driving cars will be prevalent.
+用声音控制、可自动驾驶的轿车将变得非常普遍。
+
+demonstrate
+英[ˈdemənstreɪt]美[ˈdɛmənˌstret]
+vt.
+论证; 证明，证实; 显示，展示; 演示，说明
+vi.
+示威游行
+1
+As an example, a simple Java component was created in a module to demonstrate the usage of the Jar contents.
+作为一个例子，在一个模块中创建一个简单的Java组件，显示Jar内容的用法。
+
+
+diverse
+英[daɪˈvɜ:s]美[daɪˈvɜ:rs]
+adj.
+不同的，多种多样的; 变化多的; 形形色色的
+A Policy can 289 express such diverse things like monitoring behavior, payment conditions, scalability, or continuous 290 availability, for example 
+
+
+tier
+英[tɪə(r)]美[tɪr]
+n.
+等级; 阶梯座位等的一排，一行，一层; 包扎工
+vt.
+层层排列，使层叠
+vi.
+成递升排列，层叠
+a web server tier 
+
+
+enforce
+英[ɪnˈfɔ:s]美[ɪnˈfɔ:rs]
+vt.
+加强; 强迫服从; 实施，执行
+
+
+normative
+英[ˈnɔ:mətɪv]美[ˈnɔ:rmətɪv]
+adj.
+标准的，规范的
+网络
+标准的; 常模的; 规范的
+
+
+interpretation
+英[ɪnˌtɜ:prɪˈteɪʃn]美[ɪnˌtɜ:rprɪˈteɪʃn]
+n.
+理解; 解释，说明; 翻译; 表演，演绎
+
+
+
+fashion
+英[ˈfæʃn]美[ˈfæʃən]
+n.
+时尚，时装; 时装领域，时尚界; 方式，方法
+vt.
+制作，塑造; 使适应
+Ironically, Prime Minister 's Cameron' s referendum initiative links the two in an ultimately incompatible fashion.
+具有讽刺意味的是，卡梅伦首相公投计划以水火不容的方式将这两者结合在了一起。
+
+tackle
+英[ˈtækl]美[ˈtækəl]
+n.
+用具，装备; 索具; 阻挡; 阻截队员
+vt.
+着手处理; [橄榄球]擒住并摔倒（一名对方球员）; 给（马）配上挽具
+vi.
+擒住并摔倒一名对手
+It is essential that we tackle this thorny problem.
+我们很有必要处理这个棘手问题。
+
+
+demonstrate
+英[ˈdemənstreɪt]美[ˈdɛmənˌstret]
+vt.
+论证; 证明，证实; 显示，展示; 演示，说明
+vi.
+示威游行
+You have to demonstrate that you are reliable.
+你得证明自己是靠得住的。
+We have a constitutional right to demonstrate.
+根据宪法，我们有权进行游行示威。
+The following samples demonstrate what you should see.
+下面的示例给出应该看到的结果。
+While initially promising, App Engine's Java-based persistence currently has some serious drawbacks, which I explain and demonstrate.
+尽管在刚刚出现时前景良好，但是App Engine的基于Java的持久性目前存在一些严重的缺陷，我将对此进行解释和演示。
+
+
+
+exemplarily
+英[ɪɡzemp'lærɪlɪ]美[ɪɡzemp'lærɪlɪ]
+adv.
+杰出地; 作为模范地; 值得效仿地; 可为鉴戒地
+fig. 4 is a message sequence diagram exemplarily illustrating a flow of signalling messages in the ptm-enabled network of fig. 1.
+图4是示例性示出图1的ptm启用的网络中信令消息流的消息序列图
+
+
+emerging
+adj.
+（用作定语）新兴的
+v.
+形成; 出现( emerge的现在分词 ); 露头; 事实
+网络
+浮现; 新出现
+Operational research is a newly emerging subject.
+运筹学是一门新兴的学科。
+Dealing with emerging sexuality in an adult way
+平静对待出现的性征
+
+remainder
+英[rɪˈmeɪndə(r)]美[rɪˈmendɚ]
+n.
+剩余物; 其他人员; 差数; 廉价出售的图书
+vt.
+廉价出售（书）; 廉价出售
+adj.
+剩余的; 留存下的
+The remainder of this paper is structured as follows：
+The remainder of the books are in the box.
+馀下的书在箱子里。
+
+
+respective
+英[rɪˈspektɪv]美[rɪˈspektɪv]
+adj.
+各自的，分别的
+It is important that we dovetail our respective interests.
+让我们各自的利益相吻合很重要。
+They went into their respective bedrooms to pack.
+他们回到各自的卧室打包。
+
+
+portable
+英[ˈpɔ:təbl]美[ˈpɔ:rtəbl]
+adj.
+轻便的; 手提的
+n.
+手提式打字机
+The language is highly portable and can run on any system that supports Java technology, without local installation.
+该语言具有高度可移植性，可以在任何支持Java技术的系统上运行，并且无需本地安装。
+This is not only efficient, but also portable.
+这不仅可产生高效率，而且还可以移植。
+
+
+imperative
+英[ɪmˈperətɪv]美[ɪmˈpɛrətɪv]
+adj.
+势在必行的; 必要的，不可避免的; 命令的，专横的; [语]祈使的
+n.
+命令; 必要的事; 规则; [语]祈使语气
+
+
+
+generic
+英[dʒəˈnerɪk]美[dʒəˈnɛrɪk]
+adj.
+一般的; 类的，属性的; 不受商标保护的; [生]属的，类的
+n.
+同“a generic drug
+Let's consider four levels of a generic operation
+让我们考虑一个通用操作的四个步骤
+
+
+
+taxonomy
+英[tækˈsɒnəmi]美[tækˈsɑ:nəmi]
+n.
+（生物）分类学，分类系统
+网络
+分类学; 分类法
+Table 1 shows the main taxonomy of WAI-ARIA contents.
+表1显示了WAI-ARIA内容的主要分类。
+A taxonomy is a hierarchical classification made with levels.
+分类是指由不同级别构成的层次分类
+
+classifying
+英['klæsəfaɪŋ]美['klæsəfaɪŋ]
+v.
+划分; 归类; 区分; 分类( classify的现在分词 )
+网络
+分级; 分粒
+Librarians spend a lot of time classifying books.
+图书馆工作人员花许多时间将书分类。
+A government report illustrates the trend toward classifying information.
+一份政府工作报告阐明了信息分类的趋势。
+
+
+syntax
+英[ˈsɪntæks]美[ˈsɪnˌtæks]
+n.
+语法; 句法; 句法规则[分析]; 语构
+网络
+语义; 句法学; 语法学
+
+
+
+outline
+英[ˈaʊtlaɪn]美[ˈaʊtˌlaɪn]
+n.
+梗概，大纲，提纲，草稿，要点，主要原则; 外形，轮廓，轮廓线，轮廓画法，略图（画法）
+vt.
+概述; 略述; 画轮廓，打草图，描略图
+Make an outline before you start writing.
+你先拟个提纲再写。
+Following is an outline of the survey findings.
+以下是调查结果概要。
+Its outline roughly forms an equilateral triangle.
+它的轮廓大致形成一个等边三角形。
+The following steps outline how the Linux boot process works
+以下步骤将概要介绍Linux引导进程的工作原理
+
+
+semantics
+英[sɪˈmæntɪks]美[sɪˈmæntɪks]
+n.
+语义学; 词义学
+网络
+语义; 语意; 语义论
+
+
+tuple
+英[tʌpl]美[tʌpl]
+n.
+元组，数组
+网络
+元组; 重数; 数组
+In Visual Basic, the dynamic numerical tuple has been extensively used in many cases in a flexible way.
+VISUAL BASIC中，动态数组的使用非常灵活，其用途十分广泛.
+
+
+atomic
+英[əˈtɒmɪk]美[əˈtɑ:mɪk]
+adj.
+原子的; 原子能的，原子武器的; 极微的
+Repository read and write operations are atomic.
+存储库读和写操作是原子的。
+Together with Deng Jiaxian and others, Zhu led the development of atomic bomb and hydrogen bomb of China.
+1957年后从事核反应堆的研究工作，与邓稼先等负责并领导中国原子弹、氢弹的研制工作。
+
+
+
+interpret
+英[ɪnˈtɜ:prɪt]美[ɪnˈtɜ:rprɪt]
+vt.
+解释; 理解; 口译; 诠释，体现
+vi.
+作解释; 作口译
+
+
+annotate
+英[ˈænəteɪt]美[ˈænoˌtet]
+vt.& vi.
+注解，注释
+n.
+注释者
+网络
+校笺; 注典; 注释
+Ousers also want to annotate e-books and other documents.
+•用户还希望给电子书和其他文档加注。
+rag onto the page to annotate the Relationship shape.
+拖到绘图页后，可以给关系形状加批注。
+
+
+scenario
+英[səˈnɑ:riəʊ]美[səˈnærioʊ]
+n.
+（行动的）方案; 剧情概要; 分镜头剧本
+
+
+
+depict
+英[dɪˈpɪkt]美[dɪˈpɪkt]
+vt.
+描述; 描绘，描画
+网络
+描绘,描述; 描写; 描摹
+In
+Fig. 6 this is depicted by the arrows connecting the Build Plan activities and the called Implementation Artifacts
+
+
+
+imperative
+英[ɪmˈperətɪv]美[ɪmˈpɛrətɪv]
+adj.
+势在必行的; 必要的，不可避免的; 命令的，专横的; [语]祈使的
+n.
+命令; 必要的事; 规则; [语]祈使语气
+In business, a prompt reply is imperative.
+在商业上迅速的回复是必要的。
+
+It is imperative for China to take this pattern.
+我国实施该经济模式势在必行。
+
+
+
+conform
+英[kənˈfɔ:m]美[kənˈfɔ:rm]
+vi.
+符合; 遵照; 适应环境
+vt.
+使遵守; 使一致; 使顺从
+adj.
+一致的; 顺从的
+Article 20 The quality of electrical products and gas utensils must conform to the state standards or industrial standard.
+第二十条电器产品、燃气用具的质量必须符合国家标准或者行业标准。
+The equipment does not conform to the safety standards.
+这个设备不符合安全标准。
+
+
+
+trivial
+英[ˈtrɪviəl]美[ˈtrɪviəl]
+adj.
+琐碎的，无价值的; 平常的，平凡的; 不重要的; [生]种的
+He often dissipated his energies in trivial matters.
+他常在无关紧要的小事上浪费精力。
+At first, the incident seemed to be trivial.
+起初，这一事件似乎并不重要。
+This is rarely as trivial as it might sound.
+这很少像听起来那样平常。
+
+
