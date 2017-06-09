@@ -1,0 +1,31 @@
+https://stackoverflow.com/questions/34381680/angular-2-how-to-get-angular-to-detect-changes-made-outside-angular
+
+应用场景，有一个较大的项目，需要逐步的修改为angular框架，在逐步修改的过程中，未修改部分如何与已修改部分进行交互
+
+
+You can do this by exporting NgZone inside your Angular app. Usually, you should do all things inside Angular, but if you really want to execute your logic out of Angular, you need to get the right zone, as you have said.
+
+This trick is abusing Angular's dependency injection and hooking the injected zone on window object, as this issue shows. Declaring a dependency on NgZone, and assigning it to window.zoneImpl for exporting.
+
+//our root app component
+import {Component, NgZone} from 'angular2/core'
+
+@Component({
+  selector: 'my-app',
+  template: `
+    <div>
+      <h2>Hello {{name}}</h2>
+
+    </div>
+  `,
+})
+export class App {
+  constructor(zone: NgZone) {
+    this.name = 'Angular2'
+    window.app = this
+    window.zoneImpl = zone
+  }
+}
+After Angular bootstrapping, you should have a zoneImpl global variable. You can use the run method to kick Angular off.
+
+zoneImpl.run(() => window.app.name = "new name!")
