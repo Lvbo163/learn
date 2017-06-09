@@ -1,0 +1,14 @@
+原理解释
+http://blog.csdn.net/trochiluses/article/details/8991701
+
+简介: Head 代表当前所在的提交，通常是在当前分支的最后一次提交上，在特殊情况下可能会将Head指向之前的某次提交上。
+      如果此时修改代码并提交，则会出现detached Head。该提交不在任何已经存在的分支上，如果不处理后续会被作为垃圾回收掉
+
+
+解决方案
+http://www.jianshu.com/p/ae4857d2f868
+
+简介: 
+1 在detached Head上创建临时分支 temp ； 
+2 在对应的分支如 brach1 上合并 temp分支;
+3 删除 temp 分支
