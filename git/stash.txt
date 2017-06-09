@@ -1,0 +1,28 @@
+https://segmentfault.com/a/1190000002554160
+
+Git - stash用法
+场景
+大前提，你用的版本工具是git。
+你正在开开心心的coding，东写写西改改。突然！一个人对你说道“改个BUG”。如果这个BUG和你正在搞的代码可能相关。怎么办？立马改，为自己埋了一个雷。过会改，处理不当，BUG高于需求。
+此场景稀松平常。BUG随时有，但你能做到随时改吗？git stash拯救你。git的强大就是让你各种切换，伸缩自如。
+使用
+保存
+使用git stash保存当前的操作，如果不这么做，你在切换到别的分支之前就一定要提交已经有的改动。但你当前的操作尚未完成，所以要暂时保存起来。
+查看
+直接使用git stash list就可以了。
+MyPC:project limi$ git stash list
+s
+stash@{0}: WIP on master: 3d72f0b clear file
+s
+stash@{1}: WIP on start-test: fabaa87 fix bug
+
+
+恢复
+用git stash pop stash@{num}，num 是你要恢复的操作的序号，所以你最好在回复前用git stash list查看一下。
+git stash pop命令是恢复stash队列中的stash@{0}，然后从记录就删除，就是常规的pop操作。
+删除
+stash存的不要过多，不然你也不知道哪个是哪个，最好随时清一清。
+把所有的记录都清空掉用git stash clear。
+UPDATE
+谢谢依云的补充说明
+git stash save some_msg 这样就比较容易区分了。另外 git stash 是个一堆合并提交的分支，可以在 tig 里慢慢看。其实 git-stash 就一 shell 脚本……。
