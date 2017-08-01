@@ -1,0 +1,211 @@
+https://www.ctolib.com/topics-120325.html
+
+有时候进入某个页面时，我们需要从多个 API 地址获取数据然后进行显示。管理多个异步数据请求会比较困难，但我们可以借助 Angular Http 服务和 RxJS 库提供的功能来实现上述的功能。处理多个请求有多种方式，使用串行或并行的方式。
+
+基础知识
+
+mergeMap
+
+mergeMap 操作符用于从内部的 Observable 对象中获取值，然后返回给父级流对象。
+
+合并 Observable 对象 ( jsBin )
+
+const source = Rx.Observable.of('Hello');
+//map to inner observable and flatten
+const example = source.mergeMap(val => Rx.Observable.of(`${val} World!`));
+
+const subscribe = example.subscribe(val => console.log(val)); //output: 'Hello World!'
+在上面示例中包含两种 Observable 类型：
+
+源 Observable 对象 - 即 source 对象
+
+内部 Observable 对象 - 即 Rx.Observable.of(`${val} World!`) 对象
+
+仅当内部的 Observable 对象发出值后，才会合并源 Observable 对象输出的值，并最终输出合并的值。
+
+forkJoin
+
+forkJoin 是 Rx 版本的 Promise.all() ，即表示等到所有的 Observable 都完成后，才一次性返回值。
+
+合并多个 Observable 对象 ( jsBin )
+
+const getPostOne$ = Rx.Observable.timer(1000).mapTo({id: 1});
+const getPostTwo$ = Rx.Observable.timer(2000).mapTo({id: 2});
+
+Rx.Observable.forkJoin(getPostOne$, getPostTwo$).subscribe(
+  res => console.log(res) // [{id: 1}, {id: 2}]
+);
+处理 Http 请求
+
+我们先来看一下 Angular Http 服务简单示例。
+
+import { Component, OnInit } from '@angular/core';
+import { Http } from '@angular/http';
+
+import 'rxjs/add/operator/map';
+
+@Component({
+  selector: 'app-root',
+  template: `
+    <p>HttpModule Demo</p>
+  `
+})
+export class AppComponent implements OnInit {
+  constructor(private http: Http) { }
+
+  ngOnInit() {
+    this.http.get('https://jsonplaceholder.typicode.com/users')
+      .map(res => res.json())
+      .subscribe(users => console.log(users));
+  }
+}
+上面示例中，我们通过依赖注入方式注入 http 服务，然后在 ngOnInit() 方法中调用 http 对象的 get() 方法来获取数据。这个例子很简单，它只处理一个请求，接下来我们来看一下如何处理两个请求。
+
+Map 和 Subscribe
+
+有些时候，当我们发送下一个请求时，需要依赖于上一个请求的数据。即我们在需要在上一个请求的回调函数中获取相应数据，然后在发起另一个 HTTP 请求。
+
+import { Component, OnInit } from '@angular/core';
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/map';
+
+@Component({
+  selector: 'app-root',
+  template: `
+    <p>{{username}} Detail Info</p>
+    {{user | json}}
+  `
+})
+export class AppComponent implements OnInit {
+  constructor(private http: Http) { }
+
+  apiUrl = 'https://jsonplaceholder.typicode.com/users';
+  username: string = '';
+  user: any;
+
+  ngOnInit() {
+    this.http.get(this.apiUrl)
+      .map(res => res.json())
+      .subscribe(users => {
+        let username = users[6].username;
+        this.http.get(`${this.apiUrl}?username=${username}`)
+          .map(res => res.json())
+          .subscribe(
+            user => {
+              this.username = username;
+              this.user = user;
+            });
+      });
+  }
+}
+在上面示例中，我们先从 https://jsonplaceholder.typicode.com/users 地址获取所有用户的信息，然后再根据指定用户的 username 进一步获取用户的详细信息。虽然功能实现了，但有没有更好的解决方案呢？答案是有的，可以通过 RxJS 库中提供的 mergeMap 操作符来优化上述的流程。
+
+mergeMap
+
+import { Component, OnInit } from '@angular/core';
+import { Http } from '@angular/http';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/mergeMap';
+
+@Component({
+  selector: 'app-root',
+  template: `
+    <p>{{username}} Detail Info</p>
+    {{user | json}}
+  `
+})
+export class AppComponent implements OnInit {
+  constructor(private http: Http) { }
+
+  apiUrl = 'https://jsonplaceholder.typicode.com/users';
+
+  username: string = '';
+
+  user: any;
+
+  ngOnInit() {
+    this.http.get(this.apiUrl)
+      .map(res => res.json())
+      .mergeMap(users => {
+        this.username = users[6].username;
+        return this.http.get(`${this.apiUrl}?username=${this.username}`)
+          .map(res => res.json())
+      })
+      .subscribe(user => this.user = user);
+  }
+}
+在上面示例中，我们通过 mergeMap 操作符，解决了嵌套订阅的问题。最后我们来看一下如何处理多个并行的 Http 请求。
+
+forkJoin
+
+接下来的示例，我们将使用 forkJoin 操作符。如果你熟悉 Promises 的话，该操作符与 Promise.all() 实现的功能类似。 forkJoin 操作符接收一个 Observable 对象列表，然后并行地执行它们。一旦列表的 Observable 对象都发出值后， forkJoin 操作符返回的 Observable 对象会发出新的值，即包含所有 Observable 对象输出值的列表。具体示例如下：
+
+import { Component, OnInit } from '@angular/core';
+import { Http } from '@angular/http';
+
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/observable/forkJoin';
+
+@Component({
+  selector: 'app-root',
+  template: `
+    <p>Post Detail Info</p>
+    <ul>
+      <li>{{post1 | json}}</li>
+      <li>{{post2 | json}}</li>
+    </ul>
+  `
+})
+export class AppComponent implements OnInit {
+  constructor(private http: Http) { }
+
+  apiUrl = 'https://jsonplaceholder.typicode.com/posts';
+
+  post1: any;
+
+  post2: any;
+
+  ngOnInit() {
+    let post1 = this.http.get(`${this.apiUrl}/1`);
+    let post2 = this.http.get(`${this.apiUrl}/2`);
+
+    Observable.forkJoin([post1, post2])
+      .subscribe(results => {
+        this.post1 = results[0];
+        this.post2 = results[1];
+      });
+  }
+}
+我有话说
+
+除了 mergeMap 外，RxJS 中的 switchMap 有什么用？
+
+switchMap 操作符用于对源 Observable 对象发出的值，做映射处理。若有新的 Observable 对象出现，会在新的 Observable 对象发出新值后，退订前一个未处理完的 Observable 对象。
+
+使用示例： JSBin
+
+var source = Rx.Observable.fromEvent(document.body, 'click');
+var example = source.switchMap(e => Rx.Observable.interval(100).take(3));
+
+example.subscribe({
+    next: (value) => { console.log(value); },
+    error: (err) => { console.log('Error: ' + err); },
+    complete: () => { console.log('complete'); }
+});
+示例 marble 图：
+
+source : -----------c--c-----------------...
+        concatMap(c => Rx.Observable.interval(100).take(3))
+example: -------------0--0-1-2-----------...
+以上代码运行后，控制台的输出结果：
+
+而在实际使用 Http 服务的场景中，比如实现 AutoComplete 功能，我们可以利用 switchMap 操作符，来取消无用的 Http 请求。
+
+参考资源
+
+angular-multiple-http-requests-with-rxjs
+
+Six Operators That you Must Know
+
+查看原文： 使用 RxJS 处理多个 Http 请求
