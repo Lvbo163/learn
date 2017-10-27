@@ -134,5 +134,5 @@ in运算符还可以用来遍历某个对象的所有属性。
 ```javascript
 　　for(var prop in cat1) { alert("cat1["+prop+"]="+cat1[prop]); }
 ```
-未完，请继续阅读这个系列的第二部分《构造函数的继承》和第三部分《非构造函数的继承》。
+未完，请继续阅读这个系列的第二部分[《构造函数的继承》](https://github.com/aimuke/learn/blob/master/frontend/js/object-oriented/2%20%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%9A%84%E7%BB%A7%E6%89%BF.md)和第三部分[《非构造函数的继承》](https://github.com/aimuke/learn/blob/master/frontend/js/object-oriented/3%20%E9%9D%9E%E6%9E%84%E9%80%A0%E5%87%BD%E6%95%B0%E7%9A%84%E7%BB%A7%E6%89%BF.md)。
 （完）
