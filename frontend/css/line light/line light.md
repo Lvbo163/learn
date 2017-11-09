@@ -31,7 +31,7 @@
     </body>
 <html>
 ```
-wps_clip_image-14492
+![行线](images/line.png)
 
 从上到下四条线分别是顶线、中线、基线、底线，很像才学英语字母时的四线三格，我们知道vertical-align属性中有top、middle、baseline、bottom，就是和这四条线相关。
 
@@ -45,7 +45,7 @@ wps_clip_image-14492
 
 半行距是行距的一半，即区域3垂直距离/2，区域1，2，3，4的距离之和为行高，而区域1，2，4距离之和为字体size，所以半行距也可以这么算：（行高-字体size）/2
 
-wps_clip_image-14662
+![行高](images/line-height.png)
 
 ## 内容区、行内框、行框
 
@@ -65,7 +65,7 @@ wps_clip_image-14718
     <span style="font-size:1em;background-color:#666;">English中文</span>
 </div>
 ```
-wps_clip_image-14832
+![行框](images/line-box.png)
 
 ## line-height
 
@@ -95,7 +95,7 @@ div居中对齐一直是个难题，水平还好解决些，margin：0 auto; 可
     </span>
 </div>
 ```
-wps_clip_image-14888
+![文字居中](images/text-align.png)
 
 我们可以利用line-block这样做
 
@@ -106,7 +106,7 @@ wps_clip_image-14888
     </span>
 </div>
 ```
-wps_clip_image-14910
+![垂直居中](images/vertical-align.png)
 
 单行就比较简单了，把line-height设置为box的大小可以实现单行文字的垂直居中
 
@@ -116,7 +116,7 @@ wps_clip_image-14910
 </div>
 ``` 
 
-wps_clip_image-14956
+![垂直居中](images/vertical-align-single.png)
 
  
 
@@ -132,7 +132,7 @@ wps_clip_image-14956
     <span style="font-size:14px;padding:20px;background-color:#999;">This is a test</span>
 </div>
 ```
-wps_clip_image-15002
+![垂直居中](images/element-line-height.png)
 
 第二个span虽然因为padding原因内容区变大，当行高并未改变
 
@@ -150,7 +150,7 @@ wps_clip_image-15002
 ```
 按一般理解既然line-height可以继承，那么p元素的行高也是150%了，可是事实是这样的
 
-wps_clip_image-15035
+![垂直居中](images/line-height-inherit.png)
 
 非但没有变成150%，反而连100%都没有，重叠了！这就是继承计算的结果，如果父元素的line-height有单位（px、%）,那么继承的值则是换算后的一个具体的px级别的值；上例p得到的是10px*150%=15px的行高，而P的字体大小为30px，所以发生了重叠。
 
@@ -164,6 +164,6 @@ wps_clip_image-15035
     </p>
 </div>
 ```
-wps_clip_image-15080
+![垂直居中](images/line-height-inherit2.png)
 
 所以在使用line-height时，除非你刻意否则尽量使用倍数设值
