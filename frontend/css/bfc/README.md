@@ -11,8 +11,8 @@
 ## BFC的生成
 
 - 既然上文提到BFC是一块渲染区域，那这块渲染区域到底在哪，它又是有多大，这些由生成BFC的元素决定，CSS2.1中规定满足下列CSS声明之一的元素便会生成BFC。
-- float的值不为none；
-- overflow的值不为visible；
+- float的值不为none(right,left,inherit)；
+- overflow的值不为visible(hidden, scroll, auto, inherit)；
 - display的值为inline-block、table-cell、table-caption；
 - position的值为absolute或fixed；
 
@@ -62,6 +62,7 @@
 - 这种布局的特点在于左右俩栏的宽度固定，中间栏可以根据浏览器宽度自适应。
 
 ![多栏布局](./images/multi-column.png)
+
 多栏布局
 
 IE中也有与BFC类似概念的haslayout。
