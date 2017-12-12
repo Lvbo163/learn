@@ -61,7 +61,7 @@
 
 此时，效果图如下：
 
-![image1.png](./images/two-columns1.png)
+![image1.png](./images/two-column1.png)
 
 根据BFC布局规则第3条：
 
@@ -87,7 +87,7 @@
 
 当触发main生成BFC后，这个新的BFC不会与浮动的aside重叠。因此会根据包含块的宽度，和aside的宽度，自动变窄。效果如下：
 
-![image2.png](./images/two-columns2.png)
+![image2.png](./images/two-column2.png)
 
 ## 2. 清除浮动
 
