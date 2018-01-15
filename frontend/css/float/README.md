@@ -99,6 +99,7 @@ div的顺序是HTML代码中div的顺序决定的。
 # [官方定义如下](https://www.w3.org/wiki/CSS/Properties/clear)
 
 > The clear property indicates which sides of an element's box(es) may not be adjacent to an earlier floating box.
+
 > clear 属性指明了元素框的哪一边不能与前面的浮动框相邻。
 
 语法：
