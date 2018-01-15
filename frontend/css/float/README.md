@@ -94,30 +94,37 @@ div的顺序是HTML代码中div的顺序决定的。
 
 清除浮动可以理解为打破横向排列。
 
-清除浮动的关键字是clear，官方定义如下：
+清除浮动的关键字是clear，
 
+# [官方定义如下](https://www.w3.org/wiki/CSS/Properties/clear)
 
+> The clear property indicates which sides of an element's box(es) may not be adjacent to an earlier floating box.
+> clear 属性指明了元素框的哪一边不能与前面的浮动框相邻。
 
 语法：
 
-clear : none | left | right | both
+> clear : none | left | right | both
 
 取值：
+````
+none: No constraint on the box's position with respect to floats.
 
-none  :  默认值。允许两边都可以有浮动对象
+left: Requires that the top border edge of the box be below the bottom outer edge of any left-floating boxes that resulted from elements earlier in the source document.
+  要求当前元素的上边必须在当前元素前的所有左侧浮动元素的下边之下。
 
-left   :  不允许左边有浮动对象
+right: Requires that the top border edge of the box be below the bottom outer edge of any right-floating boxes that resulted from elements earlier in the source document.
+  要求当前元素的上边必须在当前元素前的所有右侧浮动元素的下边之下。
 
-right  :  不允许右边有浮动对象
+both: Requires that the top border edge of the box be below the bottom outer edge of any right-floating and left-floating boxes that resulted from elements earlier in the source document.
+  要求当前元素的上边必须在当前元素之前的所有浮动元素的下边之下。
+  
+inherit: Takes the same specified value as the property for the element's parent.
+````
 
-both  :  不允许有浮动对象
 
+定义非常容易理解，但是读者实际使用时可能会发现不是这么回事。要注意一下:该属性定义只影响定义该属性的元素, 并不影响与之关联的元素(如: div 上面定义了clear：left，是指div自己的顶部必须在之前所有左侧浮动元素的底部下方。并不是说其之前的左侧浮动元素发生了变化。)
 
-
-定义非常容易理解，但是读者实际使用时可能会发现不是这么回事。
-
-定义没有错，只不过它描述的太模糊，让我们不知所措。
-
+中文的文档中经常将此处解释为left 代表左侧不能有浮动， right表示右侧不能有浮动，这个描述是不对的。
 根据上边的基础，假如页面中只有两个元素div1、div2，它们都是左浮动，场景如下：
 
 
@@ -128,7 +135,7 @@ both  :  不允许有浮动对象
 
 其实这种理解是不正确的，这样做没有任何效果。看小菜定论：
 
-对于CSS的清除浮动(clear)，一定要牢记：这个规则只能影响使用清除的元素本身，不能影响其他元素。
+对于CSS的清除浮动(clear)，一定要牢记：**这个规则只能影响使用清除的元素本身，不能影响其他元素。**
 
 怎么理解呢？就拿上边的例子来说，我们是想让div2移动，但我们却是在div1元素的CSS样式中使用了清除浮动，试图通过清除div1右边的浮动元素(clear:right;)来强迫div2下移，这是不可行的，因为这个清除浮动是在div1中调用的，它只能影响div1，不能影响div2。
 
