@@ -55,3 +55,46 @@ Services may also contain a token field to provide an ACL token. This token is u
 如果是TTL类型，那么只需要提供TTL。
 
 健康检测的名字是自动生成的（service:<service-id>）。如果注册了多个健康检测， ID将按service:<service-id>:<num> 这种格式生成。 其中 num 是从1开始递增的数字
+
+## 配置多个服务
+
+````json
+{
+  "services": [
+    {
+      "id": "red0",
+      "name": "redis",
+      "tags": [
+        "primary"
+      ],
+      "address": "",
+      "port": 6000,
+      "checks": [
+        {
+          "script": "/bin/check_redis -p 6000",
+          "interval": "5s",
+          "ttl": "20s"
+        }
+      ]
+    },
+    {
+      "id": "red1",
+      "name": "redis",
+      "tags": [
+        "delayed",
+        "secondary"
+      ],
+      "address": "",
+      "port": 7000,
+      "checks": [
+        {
+          "script": "/bin/check_redis -p 7000",
+          "interval": "30s",
+          "ttl": "60s"
+        }
+      ]
+    },
+    ...
+  ]
+}
+````
