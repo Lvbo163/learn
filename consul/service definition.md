@@ -42,6 +42,8 @@ tag 属性是一组对consul不明确的值。他们可能被用于区分主从�
 address 属性用于指定一个服务的具体ip地址。如果没有提供该属性的话，服务的ip会默认的使用当前agent的ip。
 The port field can be used as well to make a service-oriented architecture simpler to configure; this way, the address and port of a service can be discovered.
 
+### token
+
 Services may also contain a token field to provide an ACL token. This token is used for any interaction with the catalog for the service, including anti-entropy syncs and deregistration.
 
 ### health check
