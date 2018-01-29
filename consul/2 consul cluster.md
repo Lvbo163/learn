@@ -1,0 +1,8 @@
+# Consul 组
+
+前面已经介绍了怎么使用Consul。但是还没有展示Consul怎么扩展成一个可伸缩的产品级服务发现系统。本节中间创建第一个真正的有多个member的cluster。
+
+当一个agent启动的时候，它是孤立的，并不知道其他的节点。要知道cluster中的其他member，agent必须加入一个已经存在的cluster。要加入一个cluster，agent需要知道一个存在的member。
+加入后，这个agent会后这个member交谈并快速的发现cluster中的其他member。agent可以加入任何其他的agent，并不一定必须是server模式的agent。
+
+
