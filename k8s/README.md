@@ -7,7 +7,9 @@
 ## 1.1 Kubernetes是什么
 
 首先，它是一个全新的基于容器技术的分布式架构领先方案；
+
 其次，Kubernetes是一个开放的开发平台；
+
 最后，Kubernetes是一个完备的分布式系统支撑平台。
 
 ## 1.2 为什么要用Kubernetes
@@ -29,9 +31,9 @@
 
 ### 1.3.1 Node（节点）
 
-Node（节点）是Kubernetes集群中相对于Master而言的工作主机，在较早的版本中也被称为Minion。Node可以是一台物理主机，也可以是一台虚拟机（VM）。在每个Node上运行用于启动和管理Pid的服务Kubelet，并能够被Master管理。在Node上运行的服务进行包括Kubelet、kube-proxy和docker daemon。
+Node（节点）是Kubernetes集群中相对于Master而言的工作主机，在较早的版本中也被称为Minion。Node可以是一台物理主机，也可以是一台虚拟机（VM）。在每个Node上运行用于启动和管理Pod的服务Kubelet，并能够被Master管理。在Node上运行的服务进行包括Kubelet、kube-proxy和docker daemon。
 
-Node信息如下：
+**Node信息如下：**
 
 Node地址：主机的IP地址，或者Node ID。
 
@@ -59,8 +61,11 @@ Node信息同步可以通过kube-controller-manager的启动参数--node-sync-pe
 Kubelet进行自注册的启动参数如下：
 
 --apiservers=: apiserver地址；
+
 --kubeconfig=: 登录apiserver所需凭据/证书的目录；
+
 --cloud_provider=: 云服务商地址，用于获取自身的metadata；
+
 --register-node=: 设置为true表示自动注册到apiserver。
 
 #### 4. 手动管理Node
@@ -78,9 +83,13 @@ Pod是Kubernetes的最基本操作单元，包含一个活多个紧密相关的�
 一个Pod中的应用容器共享同一组资源，如下所述：
 
 PID命名空间：Pod中的不同应用程序可以看到其他应用程序的进程ID；
+
 网络命名空间：Pod中的多个容器能够访问同一个IP和端口范围；
+
 IPC命名空间：Pod中的多个容器能够使用SystemV IPC或者POSIX消息队列进行通信；
+
 UTS命名空间：Pod中的多个容器共享一个主机名；
+
 Volumes（共享存储卷）：Pod中的各个容器可以访问在Pod级别定义的Volumes。
 
 #### 1. 对Pod的定义
@@ -108,9 +117,13 @@ ports:
 Pod的生命周期是通过Replication Controller来管理的。Pod的生命周期过程包括：通过模板进行定义，然后分配到一个Node上运行，在Pod所含容器运行结束后Pod也结束。在整个过程中，Pod处于一下4种状态之一：
 
 Pending：Pod定义正确，提交到Master，但其所包含的容器镜像还未完成创建。通常Master对Pod进行调度需要一些时间，之后Node对镜像进行下载也需要一些时间；
+
 Running：Pod已被分配到某个Node上，且其包含的所有容器镜像都已经创建完成，并成功运行起来；
+
 Succeeded：Pod中所有容器都成功结束，并且不会被重启，这是Pod的一种最终状态；
+
 Failed：Pod中所有容器都结束了，但至少一个容器是以失败状态结束的，这也是Pod的一种最终状态。
+
 Kubernetes为Pod设计了一套独特的网络配置，包括：为每个Pod分配一个IP地址，使用Pod名作为容器间通信的主机名等。关于Kubernetes网络的设计原理将在第2章进行详细说明。
 
 另外，不建议在Kubernetes的一个Pod内运行相同应用的多个实例。
@@ -225,7 +238,7 @@ Pod的IP地址是Docker Daemon根据docker0网桥的IP地址段进行分配的�
 
 Kubernetes支持两种对外提供服务的Service的type定义：NodePort和LoadBalancer。
 
-1. NodePort
+- NodePort
 
 在定义Service时指定spec.type=NodePort，并指定spec.ports.nodePort的值，系统就会在Kubernetes集群中的每个Node上打开一个主机上的真实端口号。这样，能够访问Node的客户端都就能通过这个端口号访问到内部的Service了。
 
@@ -247,7 +260,7 @@ selector:
 name: frontend
 ````
 
-2. LoadBalancer
+- LoadBalancer
 
 如果云服务商支持外接负载均衡器，则可以通过spec.type=LoadBalaner定义Service，同时需要制定负载均衡器的IP地址。使用这种类型需要指定Service的nodePort和clusterIP。例如：
 
@@ -297,20 +310,31 @@ Volume是Pod中能够被多个容器访问的共享目录。Kubernetes的Volume�
 Kubernetes提供了非常丰富的Volume类型，下面逐一进行说明。
 
 EmptyDir：一个EmptyDir Volume是在Pod分配到Node时创建的。从它的名称就可以看出，它的初始内容为空。在同一个Pod中所有容器可以读和写EmptyDir中的相同文件。当Pod从Node上移除时，EmptyDir中的数据也会永久删除。
+
 hostPath：在Pod上挂载宿主机上的文件或目录。
+
 gcePersistentDisk：使用这种类型的Volume表示使用谷歌计算引擎（Google Compute Engine，GCE）上永久磁盘（Persistent Disk，PD）上的文件。与EmptyDir不同，PD上的内容会永久保存，当Pod被删除时，PD只是被卸载（Unmount），但不会被删除。需要注意的是，你需要先创建一个永久磁盘（PD）才能使用gcePersistentDisk。
+
 awsElasticBlockStore：与GCE类似，该类型的Volume使用Amazon提供的Amazon Web Service（AWS）的EBS Volume，并可以挂在到Pod中去。需要注意到是，需要首先创建一个EBS Volume才能使用awsElasticBlockStore。
+
 nfs：使用NFS（网络文件系统）提供的共享目录挂载到Pod中。在系统中需要一个运行中的NFS系统。
+
 iscsi：使用iSCSI存储设备上的目录挂载到Pod中。
+
 glusterfs：使用开源GlusterFS网络文件系统的目录挂载到Pod中。
+
 rbd：使用Linux块设备共享存储（Rados Block Device）挂载到Pod中。
+
 gitRepo：通过挂载一个空目录，并从GIT库clone一个git respository以供Pod使用。
+
 secret：一个secret volume用于为Pod提供加密的信息，你可以将定义在Kubernetes中的secret直接挂载为文件让Pod访问。secret volume是通过tmfs（内存文件系统）实现的，所以这种类型的volume总是不会持久化的。
+
 persistentVolumeClaim：从PV（PersistentVolume）中申请所需的空间，PV通常是一种网络存储，例如GCEPersistentDisk、AWSElasticBlockStore、NFS、iSCSI等。
 
 ### 1.3.7 Namespace（命名空间）
 
 Namespace（命名空间）是Kubernetes系统中的另一个非常重要的概念，通过将系统内部的对象“分配”到不同的Namespace中，形成逻辑上分组的不同项目、小组或用户组，便于不同的分组在共享使用整个集群的资源的同时还能被分别管理。
+
 Kubernetes集群在启动后，会创建一个名为“default”的Namespace，通过Kubectl可以查看到。
 使用Namespace来组织Kubernetes的各种对象，可以实现对用户的分组，即“多租户”管理。对不同的租户还可以进行单独的资源配额设置和管理，使得整个集群的资源配置非常灵活、方便。
 
@@ -320,13 +344,17 @@ Annotation与Label类似，也使用key/value键值对的形式进行定义。La
 用Annotation来记录的信息包括：
 
 build信息、release信息、Docker镜像信息等，例如时间戳、release id号、PR号、镜像hash值、docker registry地址等；
+
 日志库、监控库、分析库等资源库的地址信息；
+
 程序调试工具信息，例如工具名称、版本号等；
+
 团队的联系信息，例如电话号码、负责人名称、网址等。ß
 
 ### 1.3.9 小结
 
 上述这些组件是Kubernetes系统的核心组件，它们共同构成了Kubernetes系统的框架和计算模型。通过对它们进行灵活组合，用户就可以快速、方便地对容器集群进行配置、创建和管理。
+
 除了以上核心组件，在Kubernetes系统中还有许多可供配置的资源对象，例如LimitRange、ResourceQuota。另外，一些系统内部使用的对象Binding、Event等请参考Kubernetes的API文档。
 
 ### 1.4 Kubernetes总体架构
