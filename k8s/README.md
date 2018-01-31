@@ -2,7 +2,7 @@
 
 # 第一章 kubernetes入门
 
-**作者  来二两敌敌畏**
+**作者  [来二两敌敌畏](https://www.jianshu.com/u/c84f3109853b)**
 
 ## 1.1 Kubernetes是什么
 
