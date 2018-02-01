@@ -236,7 +236,7 @@ Pod的IP地址是Docker Daemon根据docker0网桥的IP地址段进行分配的�
 
 由于Service对象在Cluster IP Range池中分配到的IP只能在内部访问，所以其他Pod都可以无障碍地访问到它。但如果这个Service作为前端服务，准备为集群外的客户端提供服务，我们就需要给这个服务提供公共IP了。
 
-Kubernetes支持两种对外提供服务的Service的type定义：NodePort和LoadBalancer。
+Kubernetes支持两种对外提供服务的Service的type定义：NodePort和LoadBalancer。具体分析参见[如何从外部访问Kubernetes集群中的应用][]
 
 - NodePort
 
@@ -363,3 +363,5 @@ Kubernetes集群由两类节点组成：Master和Node。在Master上运行etcd�
 
 
 [原文地址]: https://www.jianshu.com/p/63ffc2214788
+
+[如何从外部访问Kubernetes集群中的应用]: https://github.com/aimuke/learn/blob/master/k8s/%E5%A6%82%E4%BD%95%E4%BB%8E%E5%A4%96%E9%83%A8%E8%AE%BF%E9%97%AEKubernetes%E9%9B%86%E7%BE%A4%E4%B8%AD%E7%9A%84%E5%BA%94%E7%94%A8.md
