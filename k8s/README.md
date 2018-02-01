@@ -1,29 +1,29 @@
-[原文地址](https://www.jianshu.com/p/63ffc2214788)
+[原文地址][]
 
 # 第一章 kubernetes入门
 
-**作者  [来二两敌敌畏](https://www.jianshu.com/u/c84f3109853b)**
+**作者  [来二两敌敌畏]**
 
 ## 1.1 Kubernetes是什么
 
-首先，它是一个全新的基于容器技术的分布式架构领先方案；
+- 首先，它是一个全新的基于容器技术的分布式架构领先方案；
 
-其次，Kubernetes是一个开放的开发平台；
+- 其次，Kubernetes是一个开放的开发平台；
 
-最后，Kubernetes是一个完备的分布式系统支撑平台。
+- 最后，Kubernetes是一个完备的分布式系统支撑平台。
 
 ## 1.2 为什么要用Kubernetes
 
 使用Kubernetes的理由很多，最根本的一个理由就是：IT从来都是一个由新技术驱动的行业。
 使用Kubernetes所带来的好处：
 
--首先，最直接的感受就是我们可以“轻装上阵”地开发复杂系统了；
+- 首先，最直接的感受就是我们可以“轻装上阵”地开发复杂系统了；
 
--其次，使用Kubernetes就是在全面拥抱微服务架构；
+- 其次，使用Kubernetes就是在全面拥抱微服务架构；
 
--然后，我们的系统可以随时随地整体“搬迁”到公有云上；
+- 然后，我们的系统可以随时随地整体“搬迁”到公有云上；
 
--最后，Kubernetes系统架构具备了超强的横向扩容能力。
+- 最后，Kubernetes系统架构具备了超强的横向扩容能力。
 
 ## 1.3 Kubernetes基本概念和术语
 
@@ -361,3 +361,5 @@ build信息、release信息、Docker镜像信息等，例如时间戳、release 
 
 Kubernetes集群由两类节点组成：Master和Node。在Master上运行etcd、API Server、Controller Manager和Scheduler四个组件，其中后三个组件构成了Kubernetes的总控中心，负责对集群中所有资源进行管理和调度。在每个Node上运行Kubelet、Proxy和Docker Daemon三个组件，负责对本节点上的Pod的生命周期进行管理，以及实现服务代理的功能。另外在所有节点上都可以运行Kubectl命令行工具，它提供了Kubernetes的集群管理工具集。
 
+
+[原文地址]: https://www.jianshu.com/p/63ffc2214788
