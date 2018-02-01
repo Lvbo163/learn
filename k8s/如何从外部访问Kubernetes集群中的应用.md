@@ -260,7 +260,6 @@ spec:
 
 > 备注：Google Cloud直接支持Ingress资源，如果应用部署在Google Cloud中，Google Cloud会自动为Ingress资源创建一个7层load balancer，并为之分配一个外部IP，不需要自行部署Ingress Controller。
 
-## 结论
 <h2 id="结论">结论</h2>
 
 采用Ingress加上Load balancer的方式可以将Kubernetes Cluster中的应用服务暴露给外部客户端。这种方式比较灵活，基本可以满足大部分应用的需要。但如果需要在入口处提供更强大的功能，如有更高的效率要求，需求进行安全认证，日志记录，或者需要一些应用的定制逻辑，则需要考虑采用微服务架构中的API Gateway模式，采用一个更强大的API Gateway来作为应用的流量入口。
