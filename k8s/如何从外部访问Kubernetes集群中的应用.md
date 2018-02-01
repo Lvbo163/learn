@@ -8,19 +8,19 @@
 
 [前言](#前言)
 
-Pod和Service
+[Pod和Service](#Pod和Service)
 
-Service的类型
+[Service的类型](#Service的类型)
 
-通过NodePort提供外部访问入口
+[通过NodePort提供外部访问入口](#通过NodePort提供外部访问入口)
 
-通过Load Balancer提供外部访问入口
+[通过Load Balancer提供外部访问入口](#通过LoadBalancer提供外部访问入口)
 
-采用Ingress作为七层load balancer
+[采用Ingress作为七层load balancer](#采用Ingress作为七层loadbalancer)
 
-结论
+[结论](#结论)
 
-参考
+[参考](#参考)
 
 <h2 id="前言">前言</h2>
 
@@ -86,7 +86,7 @@ spec:
 
 因此，需要通过一个网关来将外部客户端的请求导入到Cluster中的应用中，在kubernetes中，这个网关是一个4层的load balancer。
 
-<h2 id="通过Load Balancer提供外部访问入口">通过Load Balancer提供外部访问入口</h2>
+<h2 id="通过LoadBalancer提供外部访问入口">通过Load Balancer提供外部访问入口</h2>
 
 通过将Service的类型设置为LoadBalancer，可以为Service创建一个外部Load Balancer。Kubernetes的文档中声明该Service类型需要云服务提供商的支持，其实这里只是在Kubernetes配置文件中提出了一个要求，即为该Service创建Load Balancer，至于如何创建则是由Google Cloud或Amazon Cloud等云服务商提供的，创建的Load Balancer不在Kubernetes Cluster的管理范围中。kubernetes 1.6版本中，WS, Azure, CloudStack, GCE and OpenStack等云提供商已经可以为Kubernetes提供Load Balancer.下面是一个Load balancer类型的Service例子：
 
@@ -187,7 +187,7 @@ $ neutron lb-member-list
 
 一般来说，同一个应用的多个服务/资源会放在同一个域名下，在这种情况下，创建多个Load balancer是完全没有必要的，反而带来了额外的开销和管理成本。直接将服务暴露给外部用户也会导致了前端和后端的耦合，影响了后端架构的灵活性，如果以后由于业务需求对服务进行调整会直接影响到客户端。可以通过使用Kubernetes Ingress进行L7 load balancing来解决该问题。
 
-<h2 id="采用Ingress作为七层load balancer">采用Ingress作为七层load balancer</h2>
+<h2 id="采用Ingress作为七层loadbalancer">采用Ingress作为七层load balancer</h2>
 
 首先看一下引入Ingress后的应用拓扑示意图（注：本图假设Kubernetes Cluster部署在Openstack私有云上）。 
 
