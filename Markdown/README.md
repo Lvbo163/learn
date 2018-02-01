@@ -55,6 +55,91 @@
 
 ## 图片与链接
 
+Markdown支持两种形式的链接语法： **行内** 和 **参考** 两种形式.
+
+**行内形式**是直接在后面用括号直接接上链接：
+
+````
+This is an [example link](http://example.com/).
+````
+
+**参考形式**的链接让你可以为链接定一个名称，之后你可以在文件的其他地方定义该链接的内容：
+
+````
+I get 10 times more traffic from [Google][1] than from
+[Yahoo][2] or [MSN][3].
+
+[1]: http://google.com/ "Google"
+[2]: http://search.yahoo.com/ "Yahoo Search"
+[3]: http://search.msn.com/ "MSN Search"
+````
+
+链接内容定义的形式为：
+
+方括号（前面可以选择性地加上至多三个空格来缩进），里面输入链接文字
+
+接着一个冒号
+
+接着一个以上的空格或制表符
+
+接着链接的网址
+
+选择性地接着 title 内容，可以用单引号、双引号或是括弧包着
+
+下面这三种链接的定义都是相同：
+
+````
+[foo]: http://example.com/  "Optional Title Here"
+[foo]: http://example.com/  'Optional Title Here'
+[foo]: http://example.com/  (Optional Title Here)
+````
+
+请注意：有一个已知的问题是 Markdown.pl 1.0.1 会忽略单引号包起来的链接 title。
+
+链接网址也可以用方括号包起来：
+
+````
+[id]: <http://example.com/>  "Optional Title Here"
+````
+
+你也可以把 title 属性放到下一行，也可以加一些缩进，若网址太长的话，这样会比较好看：
+
+````
+[id]: http://example.com/longish/path/to/resource/here
+    "Optional Title Here"
+````
+
+网址定义只有在产生链接的时候用到，并不会直接出现在文件之中。
+
+链接辨别标签可以有字母、数字、空白和标点符号，但是并不区分大小写，因此下面两个链接是一样的：
+
+````
+[link text][a]
+[link text][A]
+````
+
+隐式链接标记功能让你可以省略指定链接标记，这种情形下，链接标记会视为等同于链接文字，要用隐式链接标记只要在链接文字后面加上一个空的方括号，如果你要让 "Google" 链接到 google.com，你可以简化成：
+
+````
+[Google][]
+````
+
+然后定义链接内容：
+
+````
+[Google]: http://google.com/
+````
+
+由于链接文字可能包含空白，所以这种简化型的标记内也许包含多个单词：
+
+````
+Visit [Daring Fireball][] for more information.
+
+[Daring Fireball]: http://daringfireball.net/
+````
+
+链接的定义可以放在文件中的任何一个地方，我比较偏好直接放在链接出现段落的后面，你也可以把它放在文件最后面，就像是注解一样。
+
 插入链接与插入图片的语法很像，区别在一个 !号
 
 图片为：![](){ImgCap}{/ImgCap}
