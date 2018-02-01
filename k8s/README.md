@@ -234,7 +234,7 @@ Pod的IP地址是Docker Daemon根据docker0网桥的IP地址段进行分配的�
 
 #### 3. 外部访问Service
 
-由于Service对象在Cluster IP Range池中分配到的IP只能在内部访问，所以其他Pod都可以无障碍地访问到它。到如果这个Service作为前端服务，准备为集群外的客户端提供服务，我们就需要给这个服务提供公共IP了。
+由于Service对象在Cluster IP Range池中分配到的IP只能在内部访问，所以其他Pod都可以无障碍地访问到它。但如果这个Service作为前端服务，准备为集群外的客户端提供服务，我们就需要给这个服务提供公共IP了。
 
 Kubernetes支持两种对外提供服务的Service的type定义：NodePort和LoadBalancer。
 
