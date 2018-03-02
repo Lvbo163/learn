@@ -1,3 +1,4 @@
+[原文地址](https://studygolang.com/articles/2876)
 # url解析
 
 ````go
