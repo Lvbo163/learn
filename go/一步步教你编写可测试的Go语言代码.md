@@ -30,6 +30,8 @@
 
 - [HTTP测试](#HTTP测试)
 
+[参考资料](#参考资料)
+
 
 相信每位编程开发者们应该都知道，Golang作为一门标榜工程化的语言，提供了非常简便、实用的编写单元测试的能力。本文通过Golang源码包中的用法，来学习在实际项目中如何编写可测试的Go代码。有需要的朋友们可以参考借鉴，下面跟着小编一起去学习学习吧。
 
@@ -110,7 +112,7 @@ Golang的测试代码位于某个包的源代码中名称以_test.go结尾的源
 
 下面是从Go标准库摘抄的 testing.T类型的常用方法的用法：
 
-测试函数中的某条测试用例执行结果与预期不符时，调用t.Error()或t.Errorf()方法记录日志并标记测试失败
+- 测试函数中的某条测试用例执行结果与预期不符时，调用t.Error()或t.Errorf()方法记录日志并标记测试失败
 
 /usr/local/go/src/bytes/compare_test.go
 ````go
@@ -125,7 +127,7 @@ func TestCompareIdenticalSlice(t *testing.T) {
 }
 ````
 
-使用t.Fatal()和t.Fatalf()方法，在某条测试用例失败后就跳出该测试函数
+- 使用t.Fatal()和t.Fatalf()方法，在某条测试用例失败后就跳出该测试函数
 
 /usr/local/go/src/bytes/reader_test.go
 ````go
@@ -140,7 +142,7 @@ func TestReadAfterBigSeek(t *testing.T) {
 }
 ````
 
-使用t.Skip()和t.Skipf()方法，跳过某条测试用例的执行
+- 使用t.Skip()和t.Skipf()方法，跳过某条测试用例的执行
 
 /usr/local/go/src/archive/zip/zip_test.go
 ````go
@@ -153,7 +155,7 @@ func TestZip64(t *testing.T) {
  testZip64DirectoryRecordLength(buf, t)
 }
 ````
-执行测试用例的过程中通过t.Log()和t.Logf()记录日志
+- 执行测试用例的过程中通过t.Log()和t.Logf()记录日志
 
 /usr/local/go/src/regexp/exec_test.go
 ````go
@@ -169,7 +171,7 @@ func TestFowler(t *testing.T) {
 }
 ````
 
-使用t.Parallel()标记需要并发执行的测试函数
+- 使用t.Parallel()标记需要并发执行的测试函数
 
 /usr/local/go/src/runtime/stack_test.go
 ````go
@@ -195,7 +197,7 @@ func TestStackGrowth(t *testing.T) {
 
 下面是从Go标准库摘抄的 testing.B类型的常用方法的用法：
 
-在函数中调用t.ReportAllocs() ，启用内存使用分析
+- 在函数中调用t.ReportAllocs() ，启用内存使用分析
 
 /usr/local/go/src/bufio/bufio_test.go
 ````go
@@ -210,7 +212,7 @@ func BenchmarkWriterFlush(b *testing.B) {
 }
 ````
 
-通过 b.StopTimer() 、b.ResetTimer() 、b.StartTimer()来停止、重置、启动 时间经过和内存分配计数
+- 通过 b.StopTimer() 、b.ResetTimer() 、b.StartTimer()来停止、重置、启动 时间经过和内存分配计数
 
 /usr/local/go/src/fmt/scan_test.go
 ````go
@@ -227,7 +229,7 @@ func BenchmarkScanInts(b *testing.B) {
 }
 ````
 
-调用b.SetBytes()记录在一个操作中处理的字节数
+- 调用b.SetBytes()记录在一个操作中处理的字节数
 
 /usr/local/go/src/testing/benchmark.go
 ````go
@@ -239,7 +241,7 @@ func BenchmarkFields(b *testing.B) {
 }
 ````
 
-通过b.RunParallel()方法和 *testing.PB类型的Next()方法来并发执行被测对象
+- 通过b.RunParallel()方法和 *testing.PB类型的Next()方法来并发执行被测对象
 
 /usr/local/go/src/sync/atomic/value_test.go
 ````go
@@ -261,7 +263,7 @@ func BenchmarkValueRead(b *testing.B) {
 
 测试辅助代码是编写测试代码过程中因代码重用和代码质量考虑而产生的。主要包括如下方面：
 
-引入依赖的外部包，如每个测试文件都需要的 testing 包等：
+- 引入依赖的外部包，如每个测试文件都需要的 testing 包等：
 
 /usr/local/go/src/log/log_test.go:
 ````go
@@ -276,7 +278,7 @@ import (
 )
 ````
 
-定义多次用到的常量和变量，测试用例数据等：
+- 定义多次用到的常量和变量，测试用例数据等：
 
 /usr/local/go/src/log/log_test.go:
 ````go
@@ -308,7 +310,7 @@ var tests = []tester{
 }
 ````
 
-和普通的Golang源代码一样，测试代码中也能定义init函数，init函数会在引入外部包、定义常量、声明变量之后被自动调用，可以在init函数里编写测试相关的初始化代码。
+- 和普通的Golang源代码一样，测试代码中也能定义init函数，init函数会在引入外部包、定义常量、声明变量之后被自动调用，可以在init函数里编写测试相关的初始化代码。
 
 /usr/local/go/src/bytes/buffer_test.go
 ````go
@@ -321,7 +323,7 @@ func init() {
 }
 ````
 
-封装测试专用的公共函数，抽象测试专用的结构体等：
+- 封装测试专用的公共函数，抽象测试专用的结构体等：
 
 /usr/local/go/src/log/log_test.go:
 ````go
@@ -423,19 +425,19 @@ ok  hello 2.014s
 
 testing/iotest包中实现了常用的出错的Reader和Writer，可供我们在io相关的测试中使用。主要有：
 
-触发数据错误dataErrReader，通过DataErrReader()函数创建
+- 触发数据错误dataErrReader，通过DataErrReader()函数创建
 
-读取一半内容的halfReader，通过HalfReader()函数创建
+- 读取一半内容的halfReader，通过HalfReader()函数创建
 
-读取一个byte的oneByteReader，通过OneByteReader()函数创建
+- 读取一个byte的oneByteReader，通过OneByteReader()函数创建
 
-触发超时错误的timeoutReader，通过TimeoutReader()函数创建
+- 触发超时错误的timeoutReader，通过TimeoutReader()函数创建
 
-写入指定位数内容后停止的truncateWriter，通过TruncateWriter()函数创建
+- 写入指定位数内容后停止的truncateWriter，通过TruncateWriter()函数创建
 
-读取时记录日志的readLogger，通过NewReadLogger()函数创建
+- 读取时记录日志的readLogger，通过NewReadLogger()函数创建
 
-写入时记录日志的writeLogger，通过NewWriteLogger()函数创建
+- 写入时记录日志的writeLogger，通过NewWriteLogger()函数创建
 
 <h3 name="黑盒测试">黑盒测试</h3>
 
@@ -538,3 +540,17 @@ func TestCrasher(t *testing.T) {
  t.Fatalf("process ran with err %v, want exit status 1", err)
 }
 ````
+
+<h2 name="参考资料">参考资料:</h2>
+
+https://talks.golang.org/2014/testing.slide#11
+
+https://golang.org/pkg/testing/
+
+https://golang.org/pkg/testing/iotest/
+
+https://golang.org/pkg/testing/quick/
+
+https://golang.org/pkg/net/http/httptest/
+
+本文链接：http://tabalt.net/blog/golang-testing/ ，转载请注明。
