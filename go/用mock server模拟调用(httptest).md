@@ -1,3 +1,5 @@
+[原文地址](https://www.cnblogs.com/aguncn/p/7102675.html)
+
 # 用mock server模拟调用(httptest)
 
 mock是个好东东，在大项目或大公司，很实用，因为很多环境不是随时在开发环境可得的。
