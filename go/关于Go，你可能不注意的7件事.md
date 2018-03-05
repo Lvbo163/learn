@@ -85,11 +85,11 @@ var s3 = "\xe4\xb8\xad\xe5\x9b\xbd\xe4\xba\xba"
 这三种表示法中，除字面值转换为字节序列存储时根据编辑器保存的源码文件编码格式之外，其他两种均不受编码格式影响。我们可以通过逐字节输出来查 看字节序列的内容：
 
 ````go
-    fmt.Println("s byte sequence:")
-    for i := 0; i < len(s); i++ {
-        fmt.Printf("0x%x ", s[i])
-    }
-    fmt.Println("")
+fmt.Println("s byte sequence:")
+for i := 0; i < len(s); i++ {
+    fmt.Printf("0x%x ", s[i])
+}
+fmt.Println("")
 ````
 
 <h2 name="续行">二、续行</h2>
@@ -155,7 +155,7 @@ func main() {
 
 Method Set是Go语法中一个重要的隐式概念，在为interface变量做动态类型赋值、embeding struct/interface、type alias、method expression时都会用到Method Set这个重要概念。
 
-<h2 name="interface的Method Set">1、interface的Method Set</h2>
+<h3 name="interface的Method Set">1、interface的Method Set</h3>
 
 根据Go spec，interface类型的Method Set就是其interface（An interface type specifies a method set called its interface）。
 
@@ -201,7 +201,7 @@ Method1
 Method2
 ````
 
-<h2 name="除interfacetype外的类型的Method Set">2、除interface type外的类型的Method Set</h2>
+<h3 name="除interfacetype外的类型的Method Set">2、除interface type外的类型的Method Set</h3>
 
 对于非interface type的类型T，其Method Set为所有receiver为T类型的方法组成；而类型*T的Method Set则包含所有receiver为T和*T类型的方法。
 
@@ -264,33 +264,31 @@ var t T
 var pt *T
 
 var i I = t
-````
 
-or
+// or
 
-````go
 var i I = pt
 ````
 
 编译错误告诉我们：
 
 ````go
-     var i I = t // cannot use t (type T) as type I in assignment:
-                  T does not implement I (Method2 method has pointer receiver)
+var i I = t // cannot use t (type T) as type I in assignment:
+              T does not implement I (Method2 method has pointer receiver)
 ````
 
 T的Method Set中只有Method1一个方法，没有实现I接口中的 Method2，因此不能用t赋值给i；而*T实现了I的所有接口，赋值合 法。不过Method set校验仅限于在赋值给interface变量时进行，无论是T还是*T类型的方法集中的方法，对于T或*T类型变量都是可见且可以调用的，如下面代码 都是合法的：
 
 ````go
-    pt.Method1()
-    t.Method3()
+pt.Method1()
+t.Method3()
 ````
 
 因为Go编译器会自动为你的代码做receiver转换：
 
 ````go
-    pt.Method1() <=> (*pt).Method1()
-    t.Method3() <=> (&t).Method3()
+pt.Method1() <=> (*pt).Method1()
+t.Method3() <=> (&t).Method3()
 ````
 
 很多人纠结于method定义时receiver的类型（T or *T），个人觉得有两点考虑：
@@ -301,9 +299,9 @@ T的Method Set中只有Method1一个方法，没有实现I接口中的 Method2�
 2) 是否赋值给interface变量、以什么形式赋值
    就像本节所描述的，由于T和*T的Method Set可能不同，我们在设计Method receiver type时需要考虑在interface赋值时通过对Method set的校验。
 
-<h2 name="embedingtype的MethodSet">3、embeding type的Method Set</h2>
+<h3 name="embedingtype的MethodSet">3、embeding type的Method Set</h3>
 
-【interface embeding】
+<h4 name="interface-embeding">interface embeding</h4>
 
 我们先来看看interface类型embeding。例子如下：
 
@@ -366,7 +364,7 @@ type ReadWriter interface {
 }
 ````
 
-【struct embeding interface】
+<h4 name="struct-embeding-interface">struct embeding interface</h4>
 
 在struct中嵌入interface type后，struct的Method Set中将包含interface的Method Set：
 
@@ -405,7 +403,7 @@ main.T's method sets:
      Method1
 ````
 
-【struct embeding struct】
+<h4 name="struct-embeding-struct">struct embeding struct</h4>
 
 在struct中embeding struct提供了一种“继承”的手段，外部的Struct可以“继承”嵌入struct的所有方法（无论receiver是T还是*T类型）实现，但 Method Set可能会略有不同。看下面例子：
 
@@ -485,7 +483,7 @@ main.C's method sets:
 
 同时通过例子可以看出，无论是T还是*S的方法，C或*C类型变量均可调用（编译器甜头），不会被局限在Method Set中。
 
-<h2 name="aliastype的MethodSet">4、alias type的Method Set</h2>
+<h3 name="aliastype的MethodSet">4、alias type的Method Set</h3>
 
 Go支持为已有类型定义alias type，如：
 
@@ -584,7 +582,7 @@ func Get(t T) int       { return t.a }
 func Set(t *T, a int) int { t.a = a; return t.a }
 ````
 
-这种function形式被称为Method Type，也可以称为Method的signature。
+这种function形式被称为**Method Type**，也可以称为Method的**signature**。
 
 Method的一般使用方式如下：
 
@@ -602,10 +600,10 @@ T.Get(t)
 (*T).Set(&t, 1)
 ````
 
-这种以直接以类型名T调用方法M的表达方法称为Method Expression。类型T只能调用T的Method Set中的方法；同理*T只能调用*T的Method Set中的方法。上述例子中T的Method Set中只有Get，因此T.Get是合法的。但T.Set则不合法：
+这种以直接以类型名T调用方法M的表达方法称为**Method Expression**。类型T只能调用T的Method Set中的方法；同理*T只能调用*T的Method Set中的方法。上述例子中T的Method Set中只有Get，因此T.Get是合法的。但T.Set则不合法：
 
 ````go
-    T.Set(2) //invalid method expression T.Set (needs pointer receiver: (*T).Set)
+T.Set(2) //invalid method expression T.Set (needs pointer receiver: (*T).Set)
 ````
 
 我们只能使用(*T).Set(&t, 11)。
@@ -615,19 +613,19 @@ T.Get(t)
 另外Method express自身类型就是一个普通function，可以作为右值赋值给一个函数类型的变量：
 
 ````go
-    f1 := (*T).Set //函数类型：func (t *T, int)int
-    f2 := T.Get //函数类型：func(t T)int
-    f1(&t, 3)
-    fmt.Println(f2(t))
+f1 := (*T).Set //函数类型：func (t *T, int)int
+f2 := T.Get //函数类型：func(t T)int
+f1(&t, 3)
+fmt.Println(f2(t))
 ````
 
-Go中还定义了一种与Method有关的语法：如果一个表达式t具有静态类型T，M是T的Method Set中的一个方法，那么t.M即为Method Value。注意这里是t.M而不是T.M。
+Go中还定义了一种与Method有关的语法：如果一个表达式t具有静态类型T，M是T的Method Set中的一个方法，那么t.M即为**Method Value**。注意这里是t.M而不是T.M。
 
 ````go
-    f3 := (&t).Set //函数类型：func(int)int
-    f3(4)
-    f4 := t.Get//函数类型：func()int   
-    fmt.Println(f4())
+f3 := (&t).Set //函数类型：func(int)int
+f3(4)
+f4 := t.Get//函数类型：func()int   
+fmt.Println(f4())
 ````
 
 可以看出，Method value与Method Expression不同之处在于，Method value绑定了T对象实例，它的函数原型并不包含Method Expression函数原型中的第一个参数。完整例子参见：details-in-go/4/methodexpressionandmethodvalue.go。
@@ -643,17 +641,17 @@ for range的idiomatic的使用方式是使用short variable declaration（:=）�
 //details-in-go/5/iterationvariable.go
 
 ````go
-  … …
-    var m = [...]int{1, 2, 3, 4, 5}
+… …
+var m = [...]int{1, 2, 3, 4, 5}
 
-    for i, v := range m {
-        go func() {
-            time.Sleep(time.Second * 3)
-            fmt.Println(i, v)
-        }()
-    }
+for i, v := range m {
+    go func() {
+        time.Sleep(time.Second * 3)
+        fmt.Println(i, v)
+    }()
+}
 
-    time.Sleep(time.Second * 10)
+time.Sleep(time.Second * 10)
 … …
 ````
 
@@ -671,12 +669,12 @@ $go run iterationvariable.go
 各个goroutine中输出的i,v值都是for range循环结束后的i, v最终值，而不是各个goroutine启动时的i, v值。一个可行的fix方法：
 
 ````go
-    for i, v := range m {
-        go func(i, v int) {
-            time.Sleep(time.Second * 3)
-            fmt.Println(i, v)
-        }(i, v)
-    }
+for i, v := range m {
+    go func(i, v int) {
+        time.Sleep(time.Second * 3)
+        fmt.Println(i, v)
+    }(i, v)
+}
 ````
 
 <h3 name="rangeexpression副本参与iteration">2、range expression副本参与iteration</h3>
@@ -720,16 +718,16 @@ r =  [1 2 3 4 5]
 a =  [1 12 13 4 5]
 ````
 
-我们原以为在第一次iteration，也就是i = 0时，我们对a的修改(a[1] = 12，a[2] = 13)会在第二次、第三次循环中被v取出，但结果却是v取出的依旧是a被修改前的值：2和3。这就是for range的一个不大不小的坑：range expression副本参与循环。也就是说在上面这个例子里，真正参与循环的是a的副本，而不是真正的a，伪代码如 下：
+我们原以为在第一次iteration，也就是i = 0时，我们对a的修改(a[1] = 12，a[2] = 13)会在第二次、第三次循环中被v取出，但结果却是v取出的依旧是a被修改前的值：2和3。这就是for range的一个不大不小的坑：**range expression副本参与循环**。也就是说在上面这个例子里，真正参与循环的是a的副本，而不是真正的a，伪代码如 下：
 
 ````go
-    for i, v := range a' {//a' is copy from a
-        if i == 0 {
-            a[1] = 12
-            a[2] = 13
-        }
-        r[i] = v
+for i, v := range a' {//a' is copy from a
+    if i == 0 {
+        a[1] = 12
+        a[2] = 13
     }
+    r[i] = v
+}
 ````
 
 Go中的数组在内部表示为连续的字节序列，虽然长度是Go数组类型的一部分，但长度并不包含的数组的内部表示中，而是由编译器在编译期计算出 来。这个例子中，对range表达式的拷贝，即对一个数组的拷贝，a'则是Go临时分配的连续字节序列，与a完全不是一块内存。因此无论a被 如何修改，其副本a'依旧保持原值，并且参与循环的是a'，因此v从a'中取出的仍旧是a的原值，而非修改后的值。
@@ -863,11 +861,11 @@ BenchmarkSliceRangeLoop-4             20000000            70.9 ns/op
 对string来说，由于string的内部表示为struct {*byte, len)，并且string本身是immutable的，因此其行为和消耗和slice expression类似。不过for range对于string来说，每次循环的单位是rune(code point的值)，而不是byte，index为迭代字符码点的第一个字节的position：
 
 ````go
-    var s = "中国人"
+var s = "中国人"
 
-    for i, v := range s {
-        fmt.Printf("%d %s 0x%x\n", i, string(v), v)
-    }
+for i, v := range s {
+    fmt.Printf("%d %s 0x%x\n", i, string(v), v)
+}
 ````
 
 输出结果：
@@ -882,19 +880,19 @@ BenchmarkSliceRangeLoop-4             20000000            70.9 ns/op
 
 ````go
 //byte sequence of s: 0xe4 0xb8 0xad 0xe5 0x9b 0xbd 0xe4 0xba 0xba
-    var sl = []byte{0xe4, 0xb8, 0xad, 0xe5, 0x9b, 0xbd, 0xe4, 0xba, 0xba}
-    for _, v := range sl {
-        fmt.Printf("0x%x ", v)
-    }
-    fmt.Println("\n")
+var sl = []byte{0xe4, 0xb8, 0xad, 0xe5, 0x9b, 0xbd, 0xe4, 0xba, 0xba}
+for _, v := range sl {
+    fmt.Printf("0x%x ", v)
+}
+fmt.Println("\n")
 
-    sl[3] = 0xd0
-    sl[4] = 0xd6
-    sl[5] = 0xb9
+sl[3] = 0xd0
+sl[4] = 0xd6
+sl[5] = 0xb9
 
-    for i, v := range string(sl) {
-        fmt.Printf("%d %x\n", i, v)
-    }
+for i, v := range string(sl) {
+    fmt.Printf("%d %x\n", i, v)
+}
 ````
 
 输出结果：
@@ -917,15 +915,15 @@ BenchmarkSliceRangeLoop-4             20000000            70.9 ns/op
 for range不保证每次迭代的元素次序，对于下面代码：
 
 ````go
- var m = map[string]int{
-        "tony": 21,
-        "tom":  22,
-        "jim":  23,
-    }
+var m = map[string]int{
+    "tony": 21,
+    "tom":  22,
+    "jim":  23,
+}
 
-    for k, v := range m {
-        fmt.Println(k, v)
-    }
+for k, v := range m {
+    fmt.Println(k, v)
+}
 ````
 
 输出结果可能是：
@@ -949,15 +947,15 @@ jim 23
 如果map中的某项在循环到达前被在循环体中删除了，那么它将不会被iteration variable获取到。
 
 ````go
-    counter := 0
-    for k, v := range m {
-        if counter == 0 {
-            delete(m, "tony")
-        }
-        counter++
-        fmt.Println(k, v)
+counter := 0
+for k, v := range m {
+    if counter == 0 {
+        delete(m, "tony")
     }
-    fmt.Println("counter is ", counter)
+    counter++
+    fmt.Println(k, v)
+}
+fmt.Println("counter is ", counter)
 ````
 
 反复运行多次，我们得到的两个结果：
@@ -976,17 +974,17 @@ counter is  2
 如果在循环体中新创建一个map元素项，那该项元素可能出现在后续循环中，也可能不出现：
 
 ````go
-    m["tony"] = 21
-    counter = 0
+m["tony"] = 21
+counter = 0
 
-    for k, v := range m {
-        if counter == 0 {
-            m["lucy"] = 24
-        }
-        counter++
-        fmt.Println(k, v)
+for k, v := range m {
+    if counter == 0 {
+        m["lucy"] = 24
     }
-    fmt.Println("counter is ", counter)
+    counter++
+    fmt.Println(k, v)
+}
+fmt.Println("counter is ", counter)
 ````
 
 执行结果：
@@ -1119,12 +1117,11 @@ invoke getANumToChannel
 
 2) 如果选择要执行的case是一个recv channel，那么它的赋值等号左边的表达式会被求值：如例子中当goroutine 3s后向recvchan写入一个int值后，select选择了recv channel执行，此时对=左侧的表达式 (getAStorageArr())[0] 开始求值，输出“invoke getAStorageArr”。
 
-
 <h2 name="panic的recover过程">七、panic的recover过程</h2>
 
 Go没有提供“try-catch-finally”这样的异常处理设施，而仅仅提供了panic和recover，其中recover还要结合 defer使用。最初这也是被一些人诟病的点。但和错误码返回值一样，渐渐的大家似乎适应了这些，征讨之声渐稀，即便有也是排在“缺少generics” 之后了。
 
-【panicking】
+<h3 name="panicking">panicking</h3>
 
 在没有recover的时候，一旦panic发生，panic会按既定顺序结束当前进程，这一过程成为panicking。下面的例子模拟了这一过程：
 
@@ -1189,7 +1186,7 @@ exit status 2
     这时对于foo而言，bar就变成了panic，同理，最终foo将panic抛给了main
     main与上述函数一样，没有recover，直接异常返回，导致进程异常退出。
   
-【recover】
+<h3 name="recover">recover</h3>
 
 recover只有在defer函数中调用才能起到recover的作用，这样recover就和defer函数有了紧密联系。我们在zoo的defer函数中捕捉并recover这个panic：
 
@@ -1253,8 +1250,11 @@ foo defer func invoked
 Related posts:
 
 Go程序设计语言(二)
+
 Go中的系统Signal处理
+
 Go程序设计语言(三)
+
 Go语言标准库概览
+
 Golang的演化历程
-已有 6 条评论
