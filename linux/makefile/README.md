@@ -148,3 +148,6 @@ clean:
 其中，shell函数主要用于执行shell命令，具体到这里就是找出当前目录下所有的.c和.h文件。而$(src:%.c=%.o)则是一个字符替换函数，它会将src所有的.c字串替换成.o，实际上就等于列出了所有.c文件要编译的结果。有了这两个设定，无论我们今后在该工程加入多少.c和.h文件，Makefile都能自动将其纳入到工程中来。
 
 到这里，我们就基本上将日常会用到的Makefile写法介绍了一遍。如果你想了解更多关于makefile和make的知识，请参考[GNU Make Manual](http://www.cs.utexas.edu/~cannata/cs345/GNU%20Make%20Manual.pdf)。
+
+## 参考:
+[跟我一起写Makefile系列文章](http://wiki.ubuntu.org.cn/%E8%B7%9F%E6%88%91%E4%B8%80%E8%B5%B7%E5%86%99Makefile:MakeFile%E4%BB%8B%E7%BB%8D)
