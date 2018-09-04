@@ -2,25 +2,26 @@
 
 ## 目录
 
-[目录](#目录)
+- [目录](#目录)
+- [标题](#标题)
+- [列表](#列表)
+   - [有序列表](#有序列表)
+   - [无序列表](#无序列表)
+   - [待办列表](#待办列表)
+- [引用](#引用)
+- [图片与链接](#图片与链接)
+   - [链接](#链接)
+   - [图片](#图片)
+- [锚点](#锚点)
+- [粗体与斜体](#粗体与斜体)
+- [表格](#表格)
+- [代码框](#代码框)
+- [分割线](#分割线)
+- [图表](#图表)
+   - [流程图](#流程图)
+   - [时序图](#时序图)
+   - [甘特图](#甘特图)
 
-[标题](#标题)
-
-[列表](#列表)
-
-[引用](#引用)
-
-[图片与链接](#图片与链接)
-
-[锚点](#锚点)
-
-[粗体与斜体](#粗体与斜体)
-
-[表格](#表格)
-
-[代码框](#代码框)
-
-[分割线](#分割线)
 
 ## 目录
 
@@ -42,9 +43,11 @@
 ### 三级标题
 ````
 
-<h2 name="列表">列表</h2>
+## 列表
 
 熟悉 HTML 的同学肯定知道有序列表与无序列表的区别，在 Markdown 下，列表的显示只需要在文字前加上 - 或 * 即可变为无序列表，有序列表则直接在文字前加1. 2. 3. 符号要和文字之间加上一个字符的空格。
+
+### 无序列表
 - 无序列表1
 - 无序列表2
 - 无序列表3
@@ -53,9 +56,6 @@
 * 无序列表2
 * 无序列表3
 
-1. 有序列表1
-2. 有序列表2
-3. 有序列表3
 ````
 -无序列表1
 -无序列表2
@@ -64,13 +64,23 @@
 *无序列表1
 *无序列表2
 *无序列表3
+````
 
+### 有序列表
+
+1. 有序列表1
+2. 有序列表2
+3. 有序列表3
+
+````
 1. 有序列表1
 2. 有序列表2
 3. 有序列表3
 ````
 
-代办列表: 表示列表是否勾选状态（注意：[ ] 前后都要有空格）
+### 待办列表
+
+表示列表是否勾选状态（注意：[ ] 前后都要有空格）
 
 - [ ] 不勾选
 - [x] 勾选
@@ -80,7 +90,7 @@
 - [x] 勾选
 ```
 
-<h2 name="引用">引用</h2>
+## 引用
 
 如果你需要引用一小段别处的句子，那么就要用引用的格式。
 
@@ -122,7 +132,9 @@
 > return shell_exec(`echo $input | $markdown_script`);
 ```
 
-<h2 name="图片与链接">图片与链接</h2>
+## 图片与链接
+
+### 链接
 
 Markdown支持两种形式的链接语法： **行内** 和 **参考** 两种形式.
 
@@ -209,6 +221,8 @@ Visit [Daring Fireball][] for more information.
 
 链接的定义可以放在文件中的任何一个地方，我比较偏好直接放在链接出现段落的后面，你也可以把它放在文件最后面，就像是注解一样。
 
+### 图片
+
 插入链接与插入图片的语法很像，区别在一个 !号
 
 图片为：![](){ImgCap}{/ImgCap}
@@ -293,3 +307,93 @@ function test() {
 ````
 ***
 ````
+
+## 图表
+
+Markdown 编辑器已支持绘制流程图、时序图和甘特图。通过 mermaid 实现图形的插入，点击查看 更多语法详情。
+
+### 流程图
+```graph
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->E;
+    E-->F;
+    D-->F;
+    F-->G;
+```
+效果图如下：
+
+graph TD;
+    A-->B;
+    A-->C;
+    B-->D;
+    C-->E;
+    E-->F;
+    D-->F;
+    F-->G;
+
+### 时序图
+```
+sequenceDiagram
+    participant Alice
+    participant Bob
+    Alice->John: Hello John, how are you?
+    loop Healthcheck
+        John->John: Fight against hypochondria
+    end
+    Note right of John: Rational thoughts 
+prevail...
+    John-->Alice: Great!
+    John->Bob: How about you?
+    Bob-->John: Jolly good!
+```
+
+sequenceDiagram
+    participant Alice
+    participant Bob
+    Alice->John: Hello John, how are you?
+    loop Healthcheck
+        John->John: Fight against hypochondria
+    end
+    Note right of John: Rational thoughts 
+prevail...
+    John-->Alice: Great!
+    John->Bob: How about you?
+    Bob-->John: Jolly good!
+
+### 甘特图
+```
+gantt
+        dateFormat  YYYY-MM-DD
+        title Adding GANTT diagram functionality to mermaid
+        section A section
+        Completed task            :done,    des1, 2014-01-06,2014-01-08
+        Active task               :active,  des2, 2014-01-09, 3d
+        Future task               :         des3, after des2, 5d
+        Future task2               :         des4, after des3, 5d
+        section Critical tasks
+        Completed task in the critical line :crit, done, 2014-01-06,24h
+        Implement parser and jison          :crit, done, after des1, 2d
+        Create tests for parser             :crit, active, 3d
+        Future task in critical line        :crit, 5d
+        Create tests for renderer           :2d
+        Add to mermaid                      :1d
+```
+
+gantt
+        dateFormat  YYYY-MM-DD
+        title Adding GANTT diagram functionality to mermaid
+        section A section
+        Completed task            :done,    des1, 2014-01-06,2014-01-08
+        Active task               :active,  des2, 2014-01-09, 3d
+        Future task               :         des3, after des2, 5d
+        Future task2               :         des4, after des3, 5d
+        section Critical tasks
+        Completed task in the critical line :crit, done, 2014-01-06,24h
+        Implement parser and jison          :crit, done, after des1, 2d
+        Create tests for parser             :crit, active, 3d
+        Future task in critical line        :crit, 5d
+        Create tests for renderer           :2d
+        Add to mermaid                      :1d
