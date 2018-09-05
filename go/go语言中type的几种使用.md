@@ -53,11 +53,9 @@ name类型与string等价
 例子：
 
 ````go
-
 type name string
 
 func main() {
-
 	var myname name = "taozs" //其实就是字符串类型
 	l := []byte(myname)       //字符串转字节数组
 	fmt.Println(len(l))       //字节长度
@@ -65,15 +63,13 @@ func main() {
 
 // 不过，要注意的是，type绝不只是用于定义一系列的别名。 还可以针对新类型定义方法。
 // 上面的name类型可以像下面这样定义方法：
-
 type name string
 
 func (n name) len() int {
-
 	return len(n)
 }
-func main() {
 
+func main() {
 	var myname name = "taozs" //其实就是字符串类型
 	l := []byte(myname)       //字符串转字节数组
 	fmt.Println(len(l))       //字节长度
@@ -84,7 +80,6 @@ func main() {
 <h2 name="结构体内嵌匿名成员">3、结构体内嵌匿名成员</h2>
 
 ````go
-
 //结构体内嵌匿名成员定义
 type person struct {
 	string //直接写类型，匿名
@@ -92,22 +87,21 @@ type person struct {
 }
 
 func main() {
-
 	//结构体匿名成员初始化
-	p := person{string: "taozs", age: 18} //可以省略部分字段，如：person{string: "taozs"}。也可以这样省略字段名：person{“taozs”, 18}，但必须写全了，不可以省略部分字段
+	//可以省略部分字段，如：person{string: "taozs"}。也可以这样省略字段名：person{“taozs”, 18}，但必须写全了，不可以省略部分字段
+	p := person{string: "taozs", age: 18} 
+	
 	//结构体匿名成员访问
 	fmt.Println(p.string) //注意不能用强制类型转换（类型断言）：p.(string)
 }
 
 //以下是只有单个匿名成员的例子。
 //结构体内嵌匿名成员定义
-
 type person struct {
 	string
 }
 
 func main() {
-
 	//结构体匿名成员初始化
 	p := person{string: "taozs"} //也可这样：person{"taozs"}
 	//结构体匿名成员访问
@@ -126,32 +120,27 @@ import (
 )
 
 //接口定义
-
 type Personer interface {
 	Run()
 	Name() string
 }
 
 //实现接口，注意实现接口的不一定只是结构体，也可以是函数对象，参见下面第5条
-
 type person struct {
 	name string
 	age  int
 }
 
 func (person) Run() {
-
 	fmt.Println("running...")
 }
 
 //接收参数person不可以是指针类型，否则不认为是实现了接口
-
 func (p person) Name() string {
-
 	return p.name
 }
-func main() {
 
+func main() {
 	//接口类型的变量定义
 	var p Personer
 	fmt.Println(p) //值<nil>
@@ -169,7 +158,6 @@ func main() {
 
 `````go
 if p2, ok := p.(person); ok { //断言成功ok值为true
-
 	fmt.Println(ok)
 	fmt.Println(p2.age)
 }
@@ -200,66 +188,49 @@ import (
 )
 
 //定义接口
-
 type adder interface {
 	add(string) int
 }
 
 //定义函数类型
-
 type handler func(name string) int
 
 //实现函数类型方法
-
 func (h handler) add(name string) int {
-
 	return h(name) + 10
 }
 
 //函数参数类型接受实现了adder接口的对象（函数或结构体）
-
 func process(a adder) {
-
 	fmt.Println("process:", a.add("taozs"))
 }
 
 //另一个函数定义
-
 func doubler(name string) int {
-
 	return len(name) * 2
 }
 
 //非函数类型
-
 type myint int
 
 //实现了adder接口
-
 func (i myint) add(name string) int {
-
 	return len(name) + int(i)
 }
-func main() {
 
+func main() {
 	//注意要成为函数对象必须显式定义handler类型
 	var my handler = func(name string) int {
 		return len(name)
 	}
 	//以下是函数或函数方法的调用
-
 	fmt.Println(my("taozs")) //调用函数
-
 	fmt.Println(my.add("taozs")) //调用函数对象的方法
-
 	fmt.Println(handler(doubler).add("taozs")) //doubler函数显式转换成handler函数对象然后调用对象的add方法
 
 	//以下是针对接口adder的调用
-
 	process(my) //process函数需要adder接口类型参数
-
 	process(handler(doubler)) //因为process接受的参数类型是handler，所以这儿要强制转换
-
 	process(myint(8)) //实现adder接口不仅可以是函数也可以是结构体
 }
 
