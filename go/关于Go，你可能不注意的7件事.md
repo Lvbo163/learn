@@ -203,7 +203,7 @@ Method2
 
 <h3 name="除interfacetype外的类型的Method Set">2、除interface type外的类型的Method Set</h3>
 
-对于非interface type的类型T，其Method Set为所有receiver为T类型的方法组成；而类型*T的Method Set则包含所有receiver为T和*T类型的方法。
+对于非interface type的类型T，其Method Set为所有receiver为T类型的方法组成；而类型\*T的Method Set则包含所有receiver为T和\*T类型的方法。
 
 // details-in-go/3/othertypemethodset.go
 
@@ -246,7 +246,7 @@ main.T's method sets:
      Method3
 ````
 
-可以看出类型T的Method set仅包含一个receiver类型为T的方法：Method1，而*T的Method Set则包含了T的Method Set以及所有receiver类型为*T的Method。
+可以看出类型T的Method set仅包含一个receiver类型为T的方法：Method1，而\*T的Method Set则包含了T的Method Set以及所有receiver类型为\*T的Method。
 
 如果此时我们有一个interface type如下：
 
@@ -277,7 +277,7 @@ var i I = t // cannot use t (type T) as type I in assignment:
               T does not implement I (Method2 method has pointer receiver)
 ````
 
-T的Method Set中只有Method1一个方法，没有实现I接口中的 Method2，因此不能用t赋值给i；而*T实现了I的所有接口，赋值合 法。不过Method set校验仅限于在赋值给interface变量时进行，无论是T还是*T类型的方法集中的方法，对于T或*T类型变量都是可见且可以调用的，如下面代码 都是合法的：
+T的Method Set中只有Method1一个方法，没有实现I接口中的 Method2，因此不能用t赋值给i；而\*T实现了I的所有接口，赋值合法。不过Method set校验仅限于在赋值给interface变量时进行，无论是T还是\*T类型的方法集中的方法，对于T或\*T类型变量都是可见且可以调用的，如下面代码都是合法的：
 
 ````go
 pt.Method1()
@@ -291,13 +291,13 @@ pt.Method1() <=> (*pt).Method1()
 t.Method3() <=> (&t).Method3()
 ````
 
-很多人纠结于method定义时receiver的类型（T or *T），个人觉得有两点考虑：
+很多人纠结于method定义时receiver的类型（T or \*T），个人觉得有两点考虑：
 
 1) 效率
    Go方法调用receiver是以传值的形式传入方法中的。如果类型size较大，以value形式传入消耗较大，这时指针类型就是首选。
 
 2) 是否赋值给interface变量、以什么形式赋值
-   就像本节所描述的，由于T和*T的Method Set可能不同，我们在设计Method receiver type时需要考虑在interface赋值时通过对Method set的校验。
+   就像本节所描述的，由于T和\*T的Method Set可能不同，我们在设计Method receiver type时需要考虑在interface赋值时通过对Method set的校验。
 
 <h3 name="embedingtype的MethodSet">3、embeding type的Method Set</h3>
 
@@ -405,7 +405,7 @@ main.T's method sets:
 
 <h4 name="struct-embeding-struct">struct embeding struct</h4>
 
-在struct中embeding struct提供了一种“继承”的手段，外部的Struct可以“继承”嵌入struct的所有方法（无论receiver是T还是*T类型）实现，但 Method Set可能会略有不同。看下面例子：
+在struct中embeding struct提供了一种“继承”的手段，外部的Struct可以“继承”嵌入struct的所有方法（无论receiver是T还是\*T类型）实现，但 Method Set可能会略有不同。看下面例子：
 
 //details-in-go/3/embedingstructinstruct.go
 
@@ -478,10 +478,10 @@ main.C's method sets:
 ````
 
 可以看出：
-类型C的Method Set = T的Method Set + *S的Method Set
-类型*C的Method Set = *T的Method Set + *S的Method Set
+类型C的Method Set = T的Method Set + \*S的Method Set
+类型\*C的Method Set = \*T的Method Set + \*S的Method Set
 
-同时通过例子可以看出，无论是T还是*S的方法，C或*C类型变量均可调用（编译器甜头），不会被局限在Method Set中。
+同时通过例子可以看出，无论是T还是\*S的方法，C或\*C类型变量均可调用（编译器甜头），不会被局限在Method Set中。
 
 <h3 name="aliastype的MethodSet">4、alias type的Method Set</h3>
 
@@ -600,7 +600,7 @@ T.Get(t)
 (*T).Set(&t, 1)
 ````
 
-这种以直接以类型名T调用方法M的表达方法称为**Method Expression**。类型T只能调用T的Method Set中的方法；同理*T只能调用*T的Method Set中的方法。上述例子中T的Method Set中只有Get，因此T.Get是合法的。但T.Set则不合法：
+这种以直接以类型名T调用方法M的表达方法称为**Method Expression**。类型T只能调用T的Method Set中的方法；同理\*T只能调用\*T的Method Set中的方法。上述例子中T的Method Set中只有Get，因此T.Get是合法的。但T.Set则不合法：
 
 ````go
 T.Set(2) //invalid method expression T.Set (needs pointer receiver: (*T).Set)
@@ -766,7 +766,7 @@ r =  [1 12 13 4 5]
 a =  [1 12 13 4 5]
 ````
 
-我们看到这次r数组的值与最终a被修改后的值一致了。这个例子中我们使用了*[5]int作为range表达式，其副本依旧是一个指向原数组 a的指针，因此后续所有循环中均是&a指向的原数组亲自参与的，因此v能从&a指向的原数组中取出a修改后的值。
+我们看到这次r数组的值与最终a被修改后的值一致了。这个例子中我们使用了\*[5]int作为range表达式，其副本依旧是一个指向原数组 a的指针，因此后续所有循环中均是&a指向的原数组亲自参与的，因此v能从&a指向的原数组中取出a修改后的值。
 
 idiomatic go建议我们尽可能的用slice替换掉array的使用，这里用slice能否实现预期的目标呢？我们来试试：
 
@@ -800,7 +800,7 @@ r =  [1 12 13 4 5]
 a =  [1 12 13 4 5]
 ````
 
-显然用slice也能实现预期要求。我们可以分析一下slice是如何做到的。slice在go的内部表示为一个struct，由(*T, len, cap)组成，其中*T指向slice对应的underlying array的指针，len是slice当前长度，cap为slice的最大容量。当range进行expression复制时，它实际上复制的是一个 slice，也就是那个struct。副本struct中的*T依旧指向原slice对应的array，为此对slice的修改都反映到 underlying array a上去了，v从副本struct中*T指向的underlying array中获取数组元素，也就得到了被修改后的元素值。
+显然用slice也能实现预期要求。我们可以分析一下slice是如何做到的。slice在go的内部表示为一个struct，由(\*T, len, cap)组成，其中\*T指向slice对应的underlying array的指针，len是slice当前长度，cap为slice的最大容量。当range进行expression复制时，它实际上复制的是一个 slice，也就是那个struct。副本struct中的\*T依旧指向原slice对应的array，为此对slice的修改都反映到 underlying array a上去了，v从副本struct中\*T指向的underlying array中获取数组元素，也就得到了被修改后的元素值。
 
 slice与array还有一个不同点，就是其len在运行时可以被改变，而array的len是一个常量，不可改变。那么len变化的 slice对for range有何影响呢？我们继续看一个例子：
 
@@ -858,7 +858,7 @@ BenchmarkSliceRangeLoop-4             20000000            70.9 ns/op
 
 <h4 name="string">string</h4>
 
-对string来说，由于string的内部表示为struct {*byte, len)，并且string本身是immutable的，因此其行为和消耗和slice expression类似。不过for range对于string来说，每次循环的单位是rune(code point的值)，而不是byte，index为迭代字符码点的第一个字节的position：
+对string来说，由于string的内部表示为struct {\*byte, len)，并且string本身是immutable的，因此其行为和消耗和slice expression类似。不过for range对于string来说，每次循环的单位是rune(code point的值)，而不是byte，index为迭代字符码点的第一个字节的position：
 
 ````go
 var s = "中国人"
