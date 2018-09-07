@@ -77,7 +77,7 @@ Docker 从诞生伊始，就从未对用户应用做出标准性规范，日志�
 
 Experiement 2 做完，瞬间毁三观，难道以上内容有差错？可以明确告诉您没有，那矛盾如何会存在？
 
-欲知后事如何，关注「Allen 谈 Docker」系列，且听下回分解。
+欲知后事如何，且听下回分解[docker exec 与容器日志](#二docker-exec-与容器日志)。
 
 ## 二、docker exec 与容器日志
 [原文地址](http://guide.daocloud.io/dcs/docker-exec-9153970.html)
@@ -90,7 +90,7 @@ Experiement 2 做完，瞬间毁三观，难道以上内容有差错？可以明
 
 为了缓解容器运行环境封闭性带来的使用障碍，Docker 提供了 docker exec  命令，方便用户在容器之外让容器执行指定的命令，以实现用户的需求。
 
-今天你 **docker exec**  了吗？如果还没有的话，灵活穿越容器的感觉你值得拥有；如果有的话，那下面这些内容你不得不看。
+今天你 **docker exec** 了吗？如果还没有的话，灵活穿越容器的感觉你值得拥有；如果有的话，那下面这些内容你不得不看。
 
 ### 1. 容器进程树与 docker exec
 随着 Docker 的普及，相信越来越多的 Docker 爱好者已经意识到：
@@ -108,7 +108,7 @@ Experiement 2 做完，瞬间毁三观，难道以上内容有差错？可以明
 1. Docker Daemon 创建一个用户指定的进程 /bin/bash ，因此 /bin/bash  的父进程为 Docker Daemon；
 2. Docker Daemon 为进程 P5 设定限制，如：加入容器主进程 P1 所在的隔离环境（namespaces），与其他进程一样受到资源限制（cgroups）等。
 
-观察上图，分析原理，不难发现，容器内部的进程关系已然不是树。然而，为什么总是强调「树状「」关系呢？答案是：树状的继承关系，有利于容器管理。以上文《docker logs 实现剖析》中卖的关子「docker exec 的标准输出不会作为容器日志」为例，Docker Daemon 创建容器主进程时，负责接管主进程的标准输出，从而保证容器主进程下所有进程的标准输出被接管，然而 Docker Daemon 在新创建 docker exec  所需执行的进程时，后者的标准输出并未与容器主进程作关联，也并未被 Docker Daemon 特殊处理，故 docker exec  所执行进程的标准输出不会进入容器的日志文件中。
+观察上图，分析原理，不难发现，容器内部的进程关系已然不是树。然而，为什么总是强调「树状」关系呢？答案是：树状的继承关系，有利于容器管理。以上文[《docker logs 实现剖析》](#一-docker-logs-实现剖析)中卖的关子「docker exec 的标准输出不会作为容器日志」为例，Docker Daemon 创建容器主进程时，负责接管主进程的标准输出，从而保证容器主进程下所有进程的标准输出被接管，然而 Docker Daemon 在新创建 docker exec  所需执行的进程时，后者的标准输出并未与容器主进程作关联，也并未被 Docker Daemon 特殊处理，故 docker exec  所执行进程的标准输出不会进入容器的日志文件中。
 
 虽然 docker exec  所执行的进程也是容器的一部分，但是更准确的理解 Docker 容器的日志，可以是这样子的：Docker 容器的日志只负责应用本身的标准输出，不包括 docker exec  衍生进程的标准输出。
 
@@ -120,7 +120,7 @@ Experiement 2 做完，瞬间毁三观，难道以上内容有差错？可以明
 
 然而，笔者却有不同的看法。应用 Docker 化之后，日志依然是一件非常棘手的事。笔者认为：容器内部日志文件 app.log  与 docker logs 依然无法满足传统模式下对日志的需求。
 
-欲知后事如何，请关注「Allen 谈 Docker 系列」，且听下回《Docker 容器日志完结篇》分解。
+欲知后事如何，且听下回[《Docker 容器日志的那些事儿》](#三docker-容器日志的那些事儿)分解。
 
 ## 三、Docker 容器日志的那些事儿
 [原文地址](http://guide.daocloud.io/dcs/docker-9153973.html)
