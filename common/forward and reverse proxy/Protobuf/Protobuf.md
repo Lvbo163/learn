@@ -3,6 +3,16 @@
 # Protobuf简介和使用
 
 **未不明不知不觉**
+<!-- TOC -->
+
+- [Protobuf简介和使用](#protobuf简介和使用)
+    - [protobuf是什么？](#protobuf是什么)
+    - [protobuf 语法定义](#protobuf-语法定义)
+    - [proto文件编译](#proto文件编译)
+    - [protobuf python api的使用](#protobuf-python-api的使用)
+
+<!-- /TOC -->
+
 
 ## protobuf是什么？
 protobuf是google旗下的一款平台无关，语言无关，可扩展的序列化结构数据格式。所以很适合用做数据存储和作为不同应用，不同语言之间相互通信的数据交换格式，只要实现相同的协议格式即同一proto文件被编译成不同的语言版本，加入到各自的工程中去。这样不同语言就可以解析其他语言通过protobuf序列化的数据。目前官网提供了C++,Python,JAVA,GO等语言的支持。
