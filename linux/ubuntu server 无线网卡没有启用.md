@@ -12,13 +12,25 @@ sudo lshw -numeric -class network
 sudo ifconfig -a
 ```
 
+
 就可以找到wlan0口，其实ubuntu server默认不启用无线网卡，只需要改一下配置文件启用无线网卡就可以了。
- 
-1. 安装wpasupplicant。由于Ubuntu 10.04 Server已经集成了这个包，所以无需安装。如果是其他版本的Ubuntu Server，可以使用下面的命令进行安装：
+
+1. 确认无线网卡的名称
+```sh
+iwconfig
+```
+wlan0或者其他比较怪的名字，例如：wlp2s0
+
+2. 启用无线网卡 
+```ssh
+sudo ifconfig wlp2s0 up
+```
+
+3. 安装wpasupplicant。由于Ubuntu 10.04 Server已经集成了这个包，所以无需安装。如果是其他版本的Ubuntu Server，可以使用下面的命令进行安装：
 ```ssh
 #apt-get install wpasupplicant
 ```
-2. 生成无线路由密钥。这一步就是根据你无线网络的SSID和密码，来生成WLAN需要的配置文件。命令如下：
+4. 生成无线路由密钥。这一步就是根据你无线网络的SSID和密码，来生成WLAN需要的配置文件。命令如下：
 ```ssh
 #wpa_passphrase 无线网络SSID 无线网络密码 > 配置文件名
 ```
@@ -28,7 +40,7 @@ sudo ifconfig -a
 ```
 注意后面的/etc/wpa_config.conf文件名可以随意取，但是请注意不要有重名的情况产生。
  
-3. 设置无线网络。编辑/etc/network/interfaces文件，将wlan添加到其中：
+5. 设置无线网络。编辑/etc/network/interfaces文件，将wlan添加到其中：
 ```ssh
 #vim /etc/network/interfaces
 ```
@@ -41,6 +53,6 @@ wpa-conf /etc/wpa_config.conf
 注意如果你的路由器没有开启DHCP，则需要手动配置address、netmask、gateway、network和broadcast几项参数，这里不多说。另外就是wpa-conf后面跟着你刚才产生的密钥配置文件名。
 如果一直不需要使用有线网络，可以连有线网络一起禁用掉，将auto eth0注释掉即可。
  
-4. 重新启动计算机。根据我实际的操作结果来看，配置好了之后虽然说无线网卡被启用了，但是驱动貌似没加载全。因此需要重启Ubuntu Server以便完整启用无线网卡。
+6. 重新启动计算机。根据我实际的操作结果来看，配置好了之后虽然说无线网卡被启用了，但是驱动貌似没加载全。因此需要重启Ubuntu Server以便完整启用无线网卡。
  
 至此，Ubuntu Server也可以用无线网卡连接到无线路由器上网了。
