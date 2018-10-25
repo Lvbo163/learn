@@ -1,9 +1,22 @@
 [原文地址1](https://www.cnblogs.com/vikings-blog/p/7099023.html)
 [原文地址2](https://studygolang.com/articles/11522)
 
-[defer panic recover 异常处理](https://github.com/aimuke/learn/blob/master/go/defer%2C%20panic%2C%20recover.md)
+相关文档 [defer panic recover 异常处理](https://github.com/aimuke/learn/blob/master/go/defer%2C%20panic%2C%20recover.md)
 
 # defer的使用
+
+<!-- TOC -->
+## 目录
+- [规则](#规则)
+    - [规则一 defer被声明时参数就会被解析](#规则一-defer被声明时参数就会被解析)
+    - [规则二 多个defer执行顺序为先进后出](#规则二-多个defer执行顺序为先进后出)
+    - [规则三 defer可以读取有名返回值](#规则三-defer可以读取有名返回值)
+- [注意事项](#注意事项)
+    - [对this参数的处理](#对this参数的处理)
+    - [命名与匿名返回值处理](#命名与匿名返回值处理)
+- [疑问?](#疑问)
+
+<!-- /TOC -->
 
 在golang当中，defer代码块会在函数调用链表中增加一个函数调用。这个函数调用不是普通的函数调用，而是会在函数正常返回，也就是return之后添加一个函数调用。因此，defer通常用来释放函数内部变量。
 
@@ -48,7 +61,7 @@ func CopyFile(dstName, srcName string) (written int64, err error) {
 通过defer，我们可以在代码中优雅的关闭/清理代码中所使用的变量。defer作为golang清理变量的特性，有其独有且明确的行为。以下是defer三条使用规则。
 
 ## 规则
-### 规则一 当defer被声明时，其参数就会被实时解析
+### 规则一 defer被声明时参数就会被解析
 > Each time a "defer" statement executes, the function value and parameters to the call are evaluated as usual and saved a new but the actual function is not invoked. 
 
 每次一个defer申明执行的时候，函数和其参数都被解析，并且会被保存为一个新的值，但是函数并不会立马被执行. 这里需要注意的是，只有函数和参数是被作为新值修改了的。后面再对函数的变量进行修改都不会影响defer定义时函数的参数和值.
@@ -108,7 +121,7 @@ func main() {
 
 但为什么是先输出4，在输出0呢？ 看下面的规则二。
 
-### 规则二 执行顺序为先进后出
+### 规则二 多个defer执行顺序为先进后出
 当同时定义了多个defer代码块时，golang安装先定义后执行的顺序依次调用defer。这个很自然,后面的语句会依赖前面的资源,因此如果先前面的资源先释放了,后面的语句就没法玩了。我们用下面的代码加深记忆和理解:
 ```go
 func b() {
@@ -215,14 +228,15 @@ a  closed
 通过以上例子,我们在看一下对defer的说明
 > Each time a "defer" statement executes, the function value and parameters to the call are evaluated as usualand saved anew but the actual function is not invoked. 
 
-这句话.可以得出下面的结论:
+# 疑问?
+这句话.可以得出下面的结论: 
 > defer后面的语句在执行的时候,函数调用的参数会被保存起来,但是不执行.也就是复制了一份.但是并没有说struct这里的this指针如何处理,通过这个例子可以看出go语言并没有把这个明确写出来的this指针当作参数来看待.
 
-### 返回值处理
+### 命名与匿名返回值处理
 
 先来运行下面两段代码：
 
-A. 匿名返回值的情况
+- 匿名返回值的情况
 ```go
 package main
 
@@ -247,7 +261,7 @@ func a() int {
     return i
 }
 ```
-B. 有名返回值的情况
+- 有名返回值的情况
 ```go
 package main
 
@@ -281,7 +295,7 @@ func b() (i int) {
 
 return 其实应该包含前后两个步骤：第一步是给返回值赋值（若为有名返回值则直接赋值，若为匿名返回值则先声明再赋值）；第二步是调用 RET 返回指令并传入返回值，而 RET 则会检查 defer 是否存在，若存在就先逆序插播 defer 语句，最后 RET 携带返回值退出函数；
 
-因此，‍‍defer、return、返回值三者的执行顺序应该是：return最先给返回值赋值；接着 defer 开始执行一些收尾工作；最后 RET 指令携带返回值退出函数。
+因此defer、return、返回值三者的执行顺序应该是：return最先给返回值赋值；接着 defer 开始执行一些收尾工作；最后 RET 指令携带返回值退出函数。
 
 如何解释两种结果的不同：
 
@@ -291,7 +305,7 @@ a()int 函数的返回值没有被提前声名，其值来自于其他变量的�
 
 b()(i int) 函数的返回值被提前声名，这使得 defer 可以访问该返回值，因此在 return 赋值返回值 i 之后，defer 调用返回值 i 并进行了修改，最后致使 return 调用 RET 退出函数后的返回值才会是 defer 修改过的值。
 
-C. 下面我们再来看第三个例子，验证上面的结论：
+下面我们再来看第三个例子，验证上面的结论：
 ```go
 package main
 
@@ -321,7 +335,7 @@ func c() *int {
 
 即，我们假设的结论是正确的！
 
-D. 补充一条，defer声明时会先计算确定参数的值，defer推迟执行的仅是其函数体。
+补充一条，defer声明时会先计算确定参数的值，defer推迟执行的仅是其函数体。
 ```go
 package main
 
@@ -341,11 +355,14 @@ func P(t time.Time) {
     fmt.Println("P    ", time.Now())
 }
 ```
-// 输出结果：
+输出结果：
+```ssh
 // main  2017-08-01 14:59:47.547597041 +0800 CST
 // defer 2017-08-01 14:59:42.545136374 +0800 CST
 // P     2017-08-01 14:59:47.548833586 +0800 CST
-E. defer 的作用域
+```
+
+- defer 的作用域
 defer 只对当前协程有效（main 可以看作是主协程）；
 
 当任意一条（主）协程发生 panic 时，会执行当前协程中 panic 之前已声明的 defer；
@@ -374,23 +391,5 @@ func main() {
     time.Sleep(1e9)
     fmt.Println("over.")
     // （5）os.Exit(1) // defer 不会执行
-}
-```
-F. defer 表达式的调用顺序是按照先进后出的方式执行
-defer 表达式会被放入一个类似于栈( stack )的结构，所以调用的顺序是先进后出/后进先出的。 
-
-下面这段代码输出的结果是 4321 而不是 1234 。
-```
-package main
-
-import (
-    "fmt"
-)
-
-func main() {
-    defer fmt.Print(1)
-    defer fmt.Print(2)
-    defer fmt.Print(3)
-    defer fmt.Print(4)
 }
 ```
