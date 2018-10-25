@@ -1,6 +1,8 @@
 [原文地址1](https://www.cnblogs.com/vikings-blog/p/7099023.html)
 [原文地址2](https://studygolang.com/articles/11522)
 
+[defer panic recover 异常处理](https://github.com/aimuke/learn/blob/master/go/defer%2C%20panic%2C%20recover.md)
+
 # defer的使用
 
 在golang当中，defer代码块会在函数调用链表中增加一个函数调用。这个函数调用不是普通的函数调用，而是会在函数正常返回，也就是return之后添加一个函数调用。因此，defer通常用来释放函数内部变量。
@@ -125,7 +127,7 @@ func c() (i int) {
     return 1
 }
 ```
-输出结果是12. 在开头的时候，我们说过defer是在return调用之后才执行的。 这里需要明确的是defer代码块的作用域仍然在函数之内，结合上面的函数也就是说，defer的作用域仍然在c函数之内。因此defer仍然可以读取c函数内的变量(如果无法读取函数内变量，那又如何进行变量清除呢....)。
+输出结果是1还是2呢? 在开头的时候，我们说过defer是在return调用之后才执行的。 这里需要明确的是defer代码块的作用域仍然在函数之内，结合上面的函数也就是说，defer的作用域仍然在c函数之内。因此defer仍然可以读取c函数内的变量(如果无法读取函数内变量，那又如何进行变量清除呢....)。
 
 当执行return 1 之后，i的值就是1. 此时此刻，defer代码块开始执行，对i进行自增操作。 因此输出2.
 
@@ -150,6 +152,13 @@ func main(){
     }
 }
 ```
+
+```ssh
+c  closed
+c  closed
+c  closed
+```
+
 这个输出并不会像我们预计的输出c b a,而是输出c c c
 
 可是按照前面的go spec中的说明,应该输出c b a才对啊.
@@ -169,11 +178,16 @@ func Close(t Test){
 func main(){
     ts:=[]Test{{"a"},{"b"},{"c"}}
     for _,t := range ts{
-        Close(t)
+        defer Close(t)
     }
 }
 ```
-这个时候输出的就是c b a
+输出:
+```ssh
+c  closed
+b  closed
+a  closed
+```
 
 当然,如果你不想多写一个函数,也很简单,可以像下面这样,同样会输出c b a
 ```go
@@ -187,10 +201,17 @@ func main(){
     ts:=[]Test{{"a"},{"b"},{"c"}}
     for _,t := range ts{
         t2:=t
-        t2.Close()
+        defer t2.Close()
     }
 }
 ```
+输出:
+```ssh
+c  closed
+b  closed
+a  closed
+```
+
 通过以上例子,我们在看一下对defer的说明
 > Each time a "defer" statement executes, the function value and parameters to the call are evaluated as usualand saved anew but the actual function is not invoked. 
 
