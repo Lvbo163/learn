@@ -1,5 +1,7 @@
 [原文地址](http://www.cnblogs.com/ghj1976/archive/2013/02/11/2910114.html)
 
+[defer使用](https://github.com/aimuke/learn/blob/master/go/defer.md)
+
 # Go的异常处理 defer, panic, recover
 Posted on 2013-02-11 20:36 蝈蝈俊
 
