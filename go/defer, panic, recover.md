@@ -10,6 +10,8 @@
 - [defer 函数清理](#defer)
 - [panic 抛出异常](#panic)
 - [recover 异常处理](#recover)
+- [defer 的作用域](#defer-的作用域)
+
 <!-- /TOC -->
 
 ## demo
@@ -115,6 +117,39 @@ func main() {
     }, func(e interface{}) {
         print(e)
     })
+}
+```
+
+
+## defer 的作用域
+defer 只对当前协程有效（main 可以看作是主协程）；
+
+当任意一条（主）协程发生 panic 时，会执行当前协程中 panic 之前已声明的 defer；
+
+在发生 panic 的（主）协程中，如果没有一个 defer 调用 recover()进行恢复，则会在执行完最后一个已声明的 defer 后，引发整个进程崩溃；
+
+主动调用 os.Exit(int) 退出进程时，defer 将不再被执行。
+```go
+package main
+
+import (
+    "errors"
+    "fmt"
+    "time"
+    // "os"
+)
+
+func main() {
+    e := errors.New("error")
+    fmt.Println(e)
+    // （3）panic(e) // defer 不会执行
+    // （4）os.Exit(1) // defer 不会执行
+    defer fmt.Println("defer")
+    // （1）go func() { panic(e) }() // 会导致 defer 不会执行
+    // （2）panic(e) // defer 会执行
+    time.Sleep(1e9)
+    fmt.Println("over.")
+    // （5）os.Exit(1) // defer 不会执行
 }
 ```
 
