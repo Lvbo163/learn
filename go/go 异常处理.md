@@ -2,6 +2,25 @@
 
 近期闲暇用Go写一个lib，其中涉及到error处理的地方让我琢磨了许久。关于Go错误处理的资料和视频已有许多，Go authors们也在官方Articles和Blog上多次提到过一些Go error handling方面的一些tips和best practice，这里仅仅算是做个收集和小结，尽视野所及，如有不足，欢迎评论中补充。（10月因各种原因，没有耕博，月末来一发，希望未为晚矣 ^_^）
 
+<!-- TOC -->
+- [1. 概述](#1-概述)
+- [2. 惯用法(idiomatic usage)](#2-惯用法idiomatic-usage)
+    - [2.1 基本用法](#21-基本用法)
+    - [2.2 注意事项](#22-注意事项)
+- [3. 槽点与破解之法](#3-槽点与破解之法)
+    - [3.1 checkError style](#31-checkerror-style)
+    - [3.2 聚合error handle functions](#32-聚合error-handle-functions)
+    - [3.3 将doStuff和error处理绑定](#33-将dostuff和error处理绑定)
+- [4. 解调用者之惑](#4-解调用者之惑)
+    - [4.1 由errors.New或fmt.Errorf返回的错误变量](#41-由errorsnew或fmterrorf返回的错误变量)
+    - [4.2 exported Error变量](#42-exported-error变量)
+    - [4.3 定义自己的error接口实现类型](#43-定义自己的error接口实现类型)
+- [五、坑(s)](#五坑s)
+    - [5.1 Go FAQ：Why is my nil error value not equal to nil?](#51-go-faqwhy-is-my-nil-error-value-not-equal-to-nil)
+    - [5.2 switch err.(type)的匹配次序](#52-switch-errtype的匹配次序)
+- [六、第三方库](#六第三方库)
+<!-- /TOC -->
+
 # 1. 概述
 Go是一门simple language，常拿出来鼓吹的就是作为gopher习以为傲的仅仅25个关键字^_^。因此Go的错误处理也一如既往的简单。我们知道C语言错误处理以返 回错误码(errno)为主流，目前企业第一语言Java则用try-catch- finally的处理方式来统一应对错误和异常（开发人员常常因分不清楚到底哪些是错误，哪些是异常而滥用该机制）。Go则继承了C，以返回值为错误处理的主要方式（辅以panic与recover应对runtime异常）。但与C不同的是，在Go的惯用法中，返回值不是整型等常用返回值类型，而是用了一个 error(interface类型)。
 ```go
@@ -462,11 +481,3 @@ func main() {
 如果觉得go内置的错误机制不能很好的满足你的需求，本着“do not reinvent the wheel”的精神，建议使用一些第三方库来满足，比如：juju/errors。这里就不赘述了。
 
 © 2015, bigwhite. 版权所有.
-
-Related posts:
-
-Go语言的有效错误处理
-Go中的系统Signal处理
-Go程序设计语言(三)
-Go语言标准库概览
-Go程序设计语言(二)
