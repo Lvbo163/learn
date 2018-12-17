@@ -275,16 +275,16 @@ Markdown 的粗体和斜体也非常简单，用两个 * 包含一段文本就�
 
 表格是我觉得 Markdown 比较累人的地方，例子如下：
 
-| Tables        | Are           | Cool  |
-| ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
-| col 2 is      | centered      |   $12 |
-| zebra stripes | are neat      |    $1 |
+| Tables        | Are           | Cool          |
+| ------------- |:-------------:| -------------:|
+| col 3 is      | right-aligned | $1600<br> 这是表格内换行示例|
+| col 2 is      | centered      | $12           |
+| zebra stripes | are neat      | $1            |
 
 ````
 | Tables        | Are           | Cool  |
 | ------------- |:-------------:| -----:|
-| col 3 is      | right-aligned | $1600 |
+| col 3 is      | right-aligned | $1600<br> 这是表格内换行示例|
 | col 2 is      | centered      |   $12 |
 | zebra stripes | are neat      |    $1 |
 ````
