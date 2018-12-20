@@ -15,6 +15,7 @@
 }
 
 .group {
+    vertical-align: top;
     display: inline-block;
 }
 
@@ -30,4 +31,7 @@
 .link:hover {
     box-shadow: 0 2px 12px 0 rgba(0,0,0,0.35);
     font-size: 30px;
+
+    transform: scale(1.2,1.2);
+    cursor: pointer;
 }
