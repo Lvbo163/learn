@@ -1,0 +1,33 @@
+.dusty {
+    background: #96858F
+}
+
+.lavendar {
+    background: #6d7993
+}
+
+.overcast {
+    background: #9099a2
+}
+
+.paper {
+    background: #D5D5D5
+}
+
+.group {
+    display: inline-block;
+}
+
+.link {
+    color: white;
+    margin-top: 5px;
+    height: 50px;
+    line-height: 50px;
+    padding-left: 5px;
+    width: 150px;
+}
+
+.link:hover {
+    box-shadow: 0 2px 12px 0 rgba(0,0,0,0.35);
+    font-size: 30px;
+}
