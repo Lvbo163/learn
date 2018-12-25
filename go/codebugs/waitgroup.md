@@ -153,3 +153,6 @@ func main() {
 修改点如上见注释:
 - 不需要将wg作为参数传入，直接使用main作用域的变量
 - 应该将wg.Done() 放到defer中，而不是放到代码最后，避免中间代码出现错误退出，而routine没有结束
+
+
+待补充，参见 http://yoojia.xyz/2018/04/13/golang-waitgroup/
