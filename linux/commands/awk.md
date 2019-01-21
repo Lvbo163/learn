@@ -1,4 +1,4 @@
-Linux awk 命令
+#[Linux awk 命令](http://www.runoob.com/linux/linux-comm-awk.html)
 
 <!-- TOC -->
 - [语法](#语法)
