@@ -50,7 +50,7 @@ func main() {
 ```
  
 一度让我以为手上的 mac 也没睡醒……
-这个问题如果理解了 WaitGroup 的设计目的就非常容易 fix 啦。因为 WaitGroup 同步的是 goroutine, 而上面的代码却在 goroutine 中进行 Add(1) 操作。因此，可能在这些 goroutine 还没来得及 Add(1) 已经执行 Wait 操作了。
+这个问题如果理解了 WaitGroup 的设计目的就非常容易 fix 啦。**因为 `WaitGroup` 同步的是 `goroutine`, 而上面的代码却在 `goroutine` 中进行 `Add(1)` 操作。因此，可能在这些 `goroutine` 还没来得及 `Add(1)` 已经执行 `Wait` 操作了。**
 
 于是代码改成了这样：
 
@@ -142,7 +142,7 @@ func main() {
         go func(i int) {    // 不需要将wg作为参数传入，直接使用main作用域的变量
             defer wg.Done()     // 应该将wg.Done() 放到defer中，而不是放到代码最后，避免中间代码出现错误退出，而routine没有结束
             log.Printf("i:%d", i)
-        }(wg, i)
+        }(i)
     }
 
     wg.Wait()
