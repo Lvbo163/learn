@@ -1,4 +1,4 @@
-[跟我一起写Makefile:MakeFile介绍](https://seisman.github.io/how-to-write-makefile/introduction.html)
+# [跟我一起写Makefile:MakeFile介绍](https://seisman.github.io/how-to-write-makefile/introduction.html)
 
 <!-- TOC -->
 - [makefile 介绍](#makefile-介绍)
