@@ -1,4 +1,5 @@
 # 13_questions_of_shell
+本目录下的内容来自 https://github.com/wzb56/13_questions_of_shell 整理
 
 <!-- TOC -->
 - [13_questions_of_shell](#13_questions_of_shell)
